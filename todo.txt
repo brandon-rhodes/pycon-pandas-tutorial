@@ -1,0 +1,91 @@
+
+Series()
+s.shift(2)
+s.value_counts()
+s.str.*
+date_range()
+DataFrame() from dict
+df.dtypes
+df.<column>
+df.head()
+df.tail()
+df.index
+df.columns
+df.values
+df.describe()
+df.T
+df.sort_index()
+df.sort()
+df['column']
+df[n:m]
+df[df.A > 0]
+df[df > 0]
+df2[df2['E'].isin(['two','four'])]
+df['F'] = s1                       (with alignment by index values)
+df2[df2 > 0] = -df2
+df.at
+df.iat
+df.loc[dates[0]]?
+df.loc[:,['A','B']]
+df.loc[:,'D'] = np.array([5] * len(df))
+df.loc['20130102':'20130102',['A','B']]
+df.loc['20130102',['A','B']]
+df.loc['20130102','A']
+df.at['20130102','A']
+df.at[dates[0],'A'] = 0
+df.iloc[3]
+df.iloc[3:5,0:2]
+df.iloc[[1,2,4],[0,2]]
+df.iloc[1:3,:]
+df.iloc[:,1:3]
+df.iloc[1,1]
+df.iat[1,1]
+df.iat[0,1] = 0
+df.ix
+df.reindex()
+df.dropna()
+df.fillna()
+df.mean()
+df.mean(1)
+df.sub()
+df.apply()
+df.groupby('A').sum()
+df.groupby(['A','B']).sum()
+
+pd.MultiIndex.from_tuples(tuples, names=['first', 'second'])
+pd.DataFrame(np.random.randn(8, 2), index=index, columns=['A', 'B'])
+stacked = df2.stack()
+stacked.unstack()
+stacked.unstack(1)
+stacked.unstack(0)
+pd.pivot_table(df, values='D', index=['A', 'B'], columns=['C'])
+pd.date_range('1/1/2012', periods=100, freq='S')
+ts.resample('5Min', how='sum')
+pd.date_range('3/6/2012 00:00', periods=5, freq='D')
+pd.Series(np.random.randn(len(rng)), rng)
+ts.tz_localize('UTC')
+ts_utc.tz_convert('US/Eastern')
+pd.date_range('1/1/2012', periods=5, freq='M')
+ts.to_period()
+ps.to_timestamp()
+pd.period_range('1990Q1', '2000Q4', freq='Q-NOV')
+ts.index = (prng.asfreq('M', 'e') + 1).asfreq('H', 's') + 9
+df["grade"] = df["raw_grade"].astype("category")
+df["grade"].cat.categories = ["very good", "good", "very bad"]
+df["grade"] = df["grade"].cat.set_categories(["very bad", "bad",
+    "medium", "good", "very good"])
+df.sort("grade")
+df.groupby("grade").size()
+ts.cumsum()
+ts.plot()
+
+df.to_csv('foo.csv')
+pd.read_csv('foo.csv')
+
+HDF5, Excel
+
+"The truth value of an array is ambiguous."
+
+pd.isnull()
+pd.concat()
+pd.merge(left, right, on='key')
