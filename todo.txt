@@ -89,3 +89,25 @@ HDF5, Excel
 pd.isnull()
 pd.concat()
 pd.merge(left, right, on='key')
+
+df.equals()
+df1.combine_first(df2)
+df1.combine(df2, combiner)
+df.mean()
+df.sum()
+df.std()
+df.cumprod()
+s.idxmin(), s.idxmax()
+s.mode()
+cut()
+qcut()
+df.apply(np.cumsum) ?
+df.apply(lambda x: x.idxmax())  for date each max value occurred
+.apply()  with extra args
+df.apply(Series.interpolate)
+df.apply(raw=)
+df.applymap()
+s.map(Series({'six' : 6., 'seven' : 7.}))
+panel?
+s.reindex()
+s.reindex_axis()
