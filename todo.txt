@@ -1,20 +1,33 @@
+http://pandas.pydata.org/pandas-docs/dev/10min.html#min
+http://pandas.pydata.org/pandas-docs/dev/basics.html
 
 Series()
 s.shift(2)
 s.value_counts()
 s.str.*
+s.dt.*
+s.order() vs s.sort()
+s.order(na_position=...)
+s.searchsorted()?
+s.nsmallest() and s.nlargest()
+s.dtype
 date_range()
 DataFrame() from dict
 df.dtypes
+df.astype()
+df.convert_objects(convert_numeric=True) or convert_dates='coerce'
+df.get_dtype_counts()?
+df.select_dtypes()?
 df.<column>
 df.head()
 df.tail()
 df.index
 df.columns
 df.values
+df.values.dtype?
 df.describe()
 df.T
-df.sort_index()
+df.sort_index() and how every level of a column index must be named
 df.sort()
 df['column']
 df[n:m]
@@ -97,17 +110,37 @@ df.mean()
 df.sum()
 df.std()
 df.cumprod()
+df.quantile()
 s.idxmin(), s.idxmax()
 s.mode()
 cut()
 qcut()
-df.apply(np.cumsum) ?
+df.apply(np.cumsum) and df.apply(Series.interpolate) to run on each series
 df.apply(lambda x: x.idxmax())  for date each max value occurred
 .apply()  with extra args
 df.apply(Series.interpolate)
 df.apply(raw=)
 df.applymap()
-s.map(Series({'six' : 6., 'seven' : 7.}))
+s.map(Series({'six' : 6., 'seven' : 7.})) and back the other way (!)
 panel?
 s.reindex()
 s.reindex_axis()
+ts2.reindex(ts.index, method='ffill') and other values for 'method'
+s and df can share an index - but truncates; no check on sensibility
+panel.apply(lambda x: x*2, axis='items')
+panel.apply(lambda x: x.dtype, axis='items')
+panel.apply(lambda x: x.sum(), axis='major_axis')
+.align()
+df.align(df2, join='inner')
+df.align(df2, join='inner', axis=0)
+df.drop()
+s.rename()
+df.iterrows()
+df.itertuples()
+
+If index is not ordered, do ranges work? efficiently?
+Dict with tuples as keys vs index with hierarchy.
+There is no integer NA, so flips to float the moment you need NA.
+NA, NaN, isnull, notnull.
+Ranges are inclusive!
+.ix[] vs .reindex()
