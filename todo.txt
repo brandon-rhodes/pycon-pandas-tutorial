@@ -144,3 +144,5 @@ There is no integer NA, so flips to float the moment you need NA.
 NA, NaN, isnull, notnull.
 Ranges are inclusive!
 .ix[] vs .reindex()
+
+df.transform()
