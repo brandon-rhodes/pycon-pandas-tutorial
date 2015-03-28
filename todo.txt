@@ -1,6 +1,8 @@
 http://pandas.pydata.org/pandas-docs/dev/10min.html#min
 http://pandas.pydata.org/pandas-docs/dev/basics.html
 
+An Index is an "ordered multiset"
+
 Series()
 s.shift(2)
 s.value_counts()
@@ -11,6 +13,9 @@ s.order(na_position=...)
 s.searchsorted()?
 s.nsmallest() and s.nlargest()
 s.dtype
+s.where(cond) and s.where(cond, other)
+s.mask()
+
 date_range()
 DataFrame() from dict
 df.dtypes
@@ -29,6 +34,7 @@ df.describe()
 df.T
 df.sort_index() and how every level of a column index must be named
 df.sort()
+df.where()
 df['column']
 df[n:m]
 df[df.A > 0]
@@ -55,6 +61,12 @@ df.iloc[1,1]
 df.iat[1,1]
 df.iat[0,1] = 0
 df.ix
+df.xs()
+df.xs(drop_level=False)
+df.xs(('one', 'bar'), level=('second', 'first'), axis=1)
+  or df.loc[:,('bar','one')]
+df.lookup()
+df.get(, default=)
 df.reindex()
 df.dropna()
 df.fillna()
@@ -64,6 +76,8 @@ df.sub()
 df.apply()
 df.groupby('A').sum()
 df.groupby(['A','B']).sum()
+df.duplicated()
+df.drop_duplicates()
 
 pd.MultiIndex.from_tuples(tuples, names=['first', 'second'])
 pd.DataFrame(np.random.randn(8, 2), index=index, columns=['A', 'B'])
@@ -123,9 +137,16 @@ df.apply(raw=)
 df.applymap()
 s.map(Series({'six' : 6., 'seven' : 7.})) and back the other way (!)
 panel?
+s.set_index()
+s.set_index(drop=False)
+s.set_index(append=True)
+s.reset_index()
+s.reset_index(level=)
+s.reset_index(drop=True)
 s.reindex()
 s.reindex_axis()
 ts2.reindex(ts.index, method='ffill') and other values for 'method'
+df.index.names
 s and df can share an index - but truncates; no check on sensibility
 panel.apply(lambda x: x*2, axis='items')
 panel.apply(lambda x: x.dtype, axis='items')
@@ -138,6 +159,9 @@ s.rename()
 df.iterrows()
 df.itertuples()
 
+pd.set_option('display.multi_sparse', False)
+and the meaning of the word "hierarchical"
+
 If index is not ordered, do ranges work? efficiently?
 Dict with tuples as keys vs index with hierarchy.
 There is no integer NA, so flips to float the moment you need NA.
@@ -146,3 +170,17 @@ Ranges are inclusive!
 .ix[] vs .reindex()
 
 df.transform()
+index rename, set_names, set_levels, and set_labels
+index & index, index | index
+
+df.swaplevel()
+df.reorder_levels()
+
+Structure
+---------
+
+Have them use df[year>1950] or whatever at first, getting individual
+sums and such, and then teach groupby() as a way to do that en masse?
+
+http://pandas.pydata.org/pandas-docs/dev/advanced.html#data-alignment-and-using-reindex ?
+

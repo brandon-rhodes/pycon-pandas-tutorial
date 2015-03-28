@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+    color: blue;
+    font-family: Helvetica;
+}
+table {
+    border-collapse: collapse;
+    border: none;
+}
+td, th {
+    border: none;
+    margin: 0;
+    padding-left: 0.5em;
+}
+th {
+    text-align: left;
+    color: red;
+}

@@ -1,0 +1,11 @@
+digraph {
+# graph [rankdir=LR]
+node [label=""]
+edge [fontname="Ubuntu Light"; fontsize=12.0]
+
+_tyd [shape=none image="_tyd.png"];
+d_ty [shape=none image="d_ty.png"];
+
+_tyd -> d_ty [label=" .set_index('director')"];
+
+}
