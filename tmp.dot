@@ -3,9 +3,13 @@ digraph {
 node [label=""]
 edge [fontname="Ubuntu Light"; fontsize=12.0]
 
-_tyd [shape=none image="_tyd.png"];
-d_ty [shape=none image="d_ty.png"];
+u__tyd [shape=none image="u__tyd.png"];
+u_d_ty [shape=none image="u_d_ty.png"];
+s_d_ty [shape=none image="s_d_ty.png"];
 
-_tyd -> d_ty [label=" .set_index('director')"];
+u__tyd -> u_d_ty [label=" .set_index('director')"];
+u_d_ty -> s_d_ty [label=" .sort_index()"];
+
+u__tyd -> s_d_ty [label=" .set_index('director')"];
 
 }
