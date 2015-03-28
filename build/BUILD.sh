@@ -5,8 +5,8 @@
 
 wget -nc -nd -r -l 1 ftp://ftp.fu-berlin.de/pub/misc/movies/database/
 mkdir -p ../data
-imdbpy2sql.py -d . -u sqlite:../imdb.db -c ../data --csv-only-write
-chmod -w ../data/*.csv
-rm ../data/*.db
+imdbpy2sql.py -d . -u sqlite:imdb.db -c . --csv-only-write
+chmod -w *.csv
+rm *.db
 
 #imdbpy2sql.py -d . -u postgres://host/database -c ../data --csv-only-write
