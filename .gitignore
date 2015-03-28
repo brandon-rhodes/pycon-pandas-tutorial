@@ -2,8 +2,8 @@
 build/ApplyDiffs*
 build/README
 build/filesizes*
-build/*.csv
 build/*.list.gz
 data/
+*.csv
 *.html
 *.png
