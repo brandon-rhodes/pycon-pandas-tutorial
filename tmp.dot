@@ -6,10 +6,19 @@ edge [fontname="Ubuntu Light"; fontsize=12.0]
 u__tyd [shape=none image="u__tyd.png"];
 u_d_ty [shape=none image="u_d_ty.png"];
 s_d_ty [shape=none image="s_d_ty.png"];
+u_dt_y [shape=none image="u_dt_y.png"];
+s_dt_y [shape=none image="s_dt_y.png"];
 
 u__tyd -> u_d_ty [label=" .set_index('director')"];
-u_d_ty -> s_d_ty [label=" .sort_index()"];
+u_d_ty -> u_dt_y [label=" .set_index('title', append=True)"];
+u__tyd -> u_dt_y [label=" .set_index(['director', 'title'])"];
 
-u__tyd -> s_d_ty [label=" .set_index('director')"];
+s_d_ty -> s_dt_y [label=" .set_index('title', append=True)"];
+
+u_d_ty -> s_d_ty [label=" .sort_index()"];
+u_dt_y -> s_dt_y [label=" .sort_index()"];
+
+{rank=same; u_d_ty s_d_ty}
+{rank=same; u_dt_y s_dt_y}
 
 }
