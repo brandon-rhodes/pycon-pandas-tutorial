@@ -1,1 +1,1 @@
-conda install --yes ipython-notebook pandas numexpr
+conda install --yes ipython-notebook pandas matplotlib numexpr
