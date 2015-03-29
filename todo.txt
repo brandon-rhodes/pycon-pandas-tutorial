@@ -1,3 +1,16 @@
+Design
+
+1. df, series, indexes, filters
+   plus plotting?
+   carrying join data in a set vs list and performance difference?
+2. indexes
+3. multiindexes? time series?
+4. nan, filling, interpolating
+5. data conversion - to/from dates and strings and numbers
+6. data cleanup: merging two book sales reports
+
+Credits
+
 http://pandas.pydata.org/pandas-docs/dev/10min.html#min
 http://pandas.pydata.org/pandas-docs/dev/basics.html
 
