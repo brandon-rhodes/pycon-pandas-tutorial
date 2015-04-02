@@ -29,20 +29,65 @@ plt.plot()
 
 2. indexes
 
+s.set_index()
+s.set_index(drop=False)
+s.set_index(append=True)
+s.reset_index()
+s.reset_index(level=)
+s.reset_index(drop=True)
+
 .sort_index()
 .loc[1870:1893]
 .map()?
 df.index
+df.index.names
 
 s.order() vs s.sort()
 s.order(na_position=...)
 
 3. multiindexes? time series?
+
+df.groupby('A').sum()
+df.groupby(['A','B']).sum()
+
+df.swaplevel()
+df.reorder_levels()
+
+pd.date_range('1/1/2012', periods=100, freq='S')
+pd.date_range('3/6/2012 00:00', periods=5, freq='D')
+pd.period_range('1990Q1', '2000Q4', freq='Q-NOV')
+ts.resample('5Min', how='sum')
+
+s.reindex()
+s.reindex_axis()
+ts2.reindex(ts.index, method='ffill') and other values for 'method'
+
 4. nan, filling, interpolating?
+
+df.dtypes
+df.astype()
+df.get_dtype_counts()?
+df.select_dtypes()?
+
+df.mean()
+df.mean(1)
+s.mode()
+df.sum()
+df.std()
+
 5. data conversion - to/from dates and strings and numbers
+
+df.dropna()
+df.fillna()
+df.drop_duplicates()
 
 s.str.*
 s.dt.*
+
+df["grade"] = df["raw_grade"].astype("category")
+df["grade"].cat.categories = ["very good", "good", "very bad"]
+df["grade"] = df["grade"].cat.set_categories(["very bad", "bad",
+    "medium", "good", "very good"])
 
 6. data cleanup: merging two book sales reports
 
@@ -62,11 +107,7 @@ s.mask()
 
 date_range()
 DataFrame() from dict
-df.dtypes
-df.astype()
 df.convert_objects(convert_numeric=True) or convert_dates='coerce'
-df.get_dtype_counts()?
-df.select_dtypes()?
 df.values
 df.values.dtype?
 df.describe()
@@ -103,16 +144,9 @@ df.xs(('one', 'bar'), level=('second', 'first'), axis=1)
 df.lookup()
 df.get(, default=)
 df.reindex()
-df.dropna()
-df.fillna()
-df.mean()
-df.mean(1)
 df.sub()
 df.apply()
-df.groupby('A').sum()
-df.groupby(['A','B']).sum()
 df.duplicated()
-df.drop_duplicates()
 
 pd.MultiIndex.from_tuples(tuples, names=['first', 'second'])
 pd.DataFrame(np.random.randn(8, 2), index=index, columns=['A', 'B'])
@@ -121,21 +155,13 @@ stacked.unstack()
 stacked.unstack(1)
 stacked.unstack(0)
 pd.pivot_table(df, values='D', index=['A', 'B'], columns=['C'])
-pd.date_range('1/1/2012', periods=100, freq='S')
-ts.resample('5Min', how='sum')
-pd.date_range('3/6/2012 00:00', periods=5, freq='D')
 pd.Series(np.random.randn(len(rng)), rng)
 ts.tz_localize('UTC')
 ts_utc.tz_convert('US/Eastern')
 pd.date_range('1/1/2012', periods=5, freq='M')
 ts.to_period()
 ps.to_timestamp()
-pd.period_range('1990Q1', '2000Q4', freq='Q-NOV')
 ts.index = (prng.asfreq('M', 'e') + 1).asfreq('H', 's') + 9
-df["grade"] = df["raw_grade"].astype("category")
-df["grade"].cat.categories = ["very good", "good", "very bad"]
-df["grade"] = df["grade"].cat.set_categories(["very bad", "bad",
-    "medium", "good", "very good"])
 df.sort("grade")
 df.groupby("grade").size()
 ts.cumsum()
@@ -155,13 +181,9 @@ pd.merge(left, right, on='key')
 df.equals()
 df1.combine_first(df2)
 df1.combine(df2, combiner)
-df.mean()
-df.sum()
-df.std()
 df.cumprod()
 df.quantile()
 s.idxmin(), s.idxmax()
-s.mode()
 cut()
 qcut()
 df.apply(np.cumsum) and df.apply(Series.interpolate) to run on each series
@@ -172,16 +194,6 @@ df.apply(raw=)
 df.applymap()
 s.map(Series({'six' : 6., 'seven' : 7.})) and back the other way (!)
 panel?
-s.set_index()
-s.set_index(drop=False)
-s.set_index(append=True)
-s.reset_index()
-s.reset_index(level=)
-s.reset_index(drop=True)
-s.reindex()
-s.reindex_axis()
-ts2.reindex(ts.index, method='ffill') and other values for 'method'
-df.index.names
 s and df can share an index - but truncates; no check on sensibility
 panel.apply(lambda x: x*2, axis='items')
 panel.apply(lambda x: x.dtype, axis='items')
@@ -208,9 +220,6 @@ df.transform()
 index rename, set_names, set_levels, and set_labels
 index & index, index | index
 
-df.swaplevel()
-df.reorder_levels()
-
 Structure
 ---------
 
@@ -218,4 +227,3 @@ Have them use df[year>1950] or whatever at first, getting individual
 sums and such, and then teach groupby() as a way to do that en masse?
 
 http://pandas.pydata.org/pandas-docs/dev/advanced.html#data-alignment-and-using-reindex ?
-
