@@ -1,12 +1,49 @@
 Design
 
 1. df, series, indexes, filters
-   plus plotting?
-   carrying join data in a set vs list and performance difference?
+-------------------------------
+
+plus plotting?
+carrying join data in a set vs list and performance difference?
+
+df.from_csv()
+df.info()
+df.head()
+df.tail()
+df.columns
+
+df['column']
+df.column
+df.column > 1940
+df.column > 1940 & df.column < 1950
+df[df.column > 1940]
+
+df.count()
+s.count()
+s.value_counts()
+s.nsmallest() and s.nlargest()
+df.sort('column')
+
+plt.bar(x, y, align='center')
+plt.plot()
+
 2. indexes
+
+.sort_index()
+.loc[1870:1893]
+.map()?
+df.index
+
+s.order() vs s.sort()
+s.order(na_position=...)
+
 3. multiindexes? time series?
-4. nan, filling, interpolating
+4. nan, filling, interpolating?
 5. data conversion - to/from dates and strings and numbers
+
+s.str.*
+s.dt.*
+
 6. data cleanup: merging two book sales reports
 
 Credits
@@ -18,13 +55,7 @@ An Index is an "ordered multiset"
 
 Series()
 s.shift(2)
-s.value_counts()
-s.str.*
-s.dt.*
-s.order() vs s.sort()
-s.order(na_position=...)
 s.searchsorted()?
-s.nsmallest() and s.nlargest()
 s.dtype
 s.where(cond) and s.where(cond, other)
 s.mask()
@@ -36,22 +67,13 @@ df.astype()
 df.convert_objects(convert_numeric=True) or convert_dates='coerce'
 df.get_dtype_counts()?
 df.select_dtypes()?
-df.<column>
-df.head()
-df.tail()
-df.index
-df.columns
 df.values
 df.values.dtype?
 df.describe()
 df.T
 df.sort_index() and how every level of a column index must be named
-df.sort()
 df.where()
-df['column']
 df[n:m]
-df[df.A > 0]
-df[df > 0]
 df2[df2['E'].isin(['two','four'])]
 df['F'] = s1                       (with alignment by index values)
 df2[df2 > 0] = -df2
