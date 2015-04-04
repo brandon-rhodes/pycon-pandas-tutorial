@@ -1,0 +1,7 @@
+
+
+
+
+
+
+pd.DataFrame({'row': df.unstack().unstack()}).T

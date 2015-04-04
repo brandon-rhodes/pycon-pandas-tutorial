@@ -1,5 +1,6 @@
 TODO
 
+unstack lets you type anything!
 Remove 'Clip from' entries?
 
 Design
