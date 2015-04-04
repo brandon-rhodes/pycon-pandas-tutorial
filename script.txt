@@ -1,7 +1,52 @@
 
 
 
+Session 2
+=========
 
+c = cast.set_index(['title'])
+c = cast.set_index(['title']).sort_index()
+%%time c.loc['Sleuth']
+%%time cast[cast.title == 'Sleuth']
 
+c = cast.set_index(['title', 'year'])
+c = cast.set_index(['title', 'year']).sort_index()
+c.loc['Sleuth']
+c.loc['Sleuth',1996]
+c.loc['Sleuth',1996].sort('n')
+c.loc[('Sleuth',1996),'character']
+c.loc[('Sleuth',1996),('character','n')]
+c.loc[('Sleuth',1996),('character','n')].sort('n')
 
+c.loc[('Sleuth',1972)].sort('n').reset_index('title')
+c.loc[('Sleuth',1972)].sort('n').reset_index('year')
+c.loc[('Sleuth',1972)].sort('n').reset_index(['title', 'year'])
+c.loc[('Sleuth',1972)].sort('n').reset_index()
+
+c.loc['Sleuth'].index
+
+Session 3
+=========
+
+c = cast
+c.groupby('year').size()
+c.groupby(['year', 'type']).size()
+
+i = cast.set_index(['year', 'type']).sort_index()
+i.groupby(level=[0,1]).size()
+
+i = cast.set_index('name').sort_index()
+i.loc['Cary Grant',['year','n']].groupby('year').mean().plot(kind='bar')
+i.loc['Cary Grant',['year','n']].groupby('year').max().plot(kind='bar')
+i.loc['Cary Grant',['year','n']].groupby('year').min().plot(kind='bar')
+i.loc['Cary Grant',['year','n']].groupby('year').agg(['min', 'mean', 'max'])
+a = i.loc['Cary Grant',['year','n']].groupby('year').agg(['min', 'mean', 'max'])
+a.loc[:1942].plot(kind='area', stacked=False)
+
+Session 4
+=========
+
+.describe()
 pd.DataFrame({'row': df.unstack().unstack()}).T
+
+reindex()

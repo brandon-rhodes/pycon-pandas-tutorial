@@ -1,11 +1,10 @@
 TODO
 
-remove (I) from end of movie names, like we did for actors
-remove shorts?
-remove documentaries too!
-remove movies marked "adult" but still marked as feature films.
 unstack lets you type anything!
 Remove 'Clip from' entries?
+Picture - show axis=0 and axis=1 and level=0 and level=1
+
+More tricks from http://pandas-docs.github.io/pandas-docs-travis/visualization.html
 
 Design
 
