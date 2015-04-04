@@ -1,3 +1,7 @@
+TODO
+
+Remove 'Clip from' entries?
+
 Design
 
 1. df, series, indexes, filters
@@ -45,7 +49,13 @@ df.index.names
 s.order() vs s.sort()
 s.order(na_position=...)
 
-3. multiindexes? time series?
+3. groupby
+
+
+
+4. Time series fanciness
+
+multiindexes? time series?
 
 df.groupby('A').sum()
 df.groupby(['A','B']).sum()
@@ -62,7 +72,8 @@ s.reindex()
 s.reindex_axis()
 ts2.reindex(ts.index, method='ffill') and other values for 'method'
 
-4. nan, filling, interpolating?
+5. nan, filling, interpolating?
+5. data conversion - to/from dates and strings and numbers
 
 df.dtypes
 df.astype()
@@ -74,8 +85,6 @@ df.mean(1)
 s.mode()
 df.sum()
 df.std()
-
-5. data conversion - to/from dates and strings and numbers
 
 df.dropna()
 df.fillna()
