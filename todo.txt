@@ -1,5 +1,9 @@
 TODO
 
+remove (I) from end of movie names, like we did for actors
+remove shorts?
+remove documentaries too!
+remove movies marked "adult" but still marked as feature films.
 unstack lets you type anything!
 Remove 'Clip from' entries?
 
@@ -15,6 +19,7 @@ df.from_csv()
 df.info()
 df.head()
 df.tail()
+df.shape
 df.columns
 
 df['column']
