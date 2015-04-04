@@ -5,21 +5,17 @@ Remove 'Clip from' entries?
 Picture - show axis=0 and axis=1 and level=0 and level=1
 
 More tricks from http://pandas-docs.github.io/pandas-docs-travis/visualization.html
-
-Design
+plus plotting?
+carrying join data in a set vs list and performance difference?
 
 1. df, series, indexes, filters
 -------------------------------
 
-plus plotting?
-carrying join data in a set vs list and performance difference?
-
 df.from_csv()
-df.info()
 df.head()
 df.tail()
+df.info()
 df.shape
-df.columns
 
 df['column']
 df.column
@@ -37,6 +33,9 @@ plt.bar(x, y, align='center')
 plt.plot()
 
 2. indexes
+
+df.index
+df.columns
 
 s.set_index()
 s.set_index(drop=False)

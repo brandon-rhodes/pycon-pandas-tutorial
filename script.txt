@@ -1,8 +1,35 @@
 
+Session 1
+=========
 
+pre-scripted .from_csv() commands
+titles.head()
+titles.head(20)
+titles.tail()
+titles.info()
+titles.shape
+h = titles.head()
+h.year + 1000
+h.year - 2000
+h[h.year > 1960]
+h[h.year > 1960 & h.year < 1970]
+h[(h.year > 1960) & (h.year < 1970)]
+h.count()
+h.year.count()
+titles.count()
+titles.sort(['title'])
+titles.sort(['year'])
+titles.sort(['year', 'title'])
+titles.year.nsmallest(7)
+titles.year.nlargest(7)
+titles.value_counts()
 
 Session 2
 =========
+
+cast.info()
+cast.index
+cast.columns
 
 c = cast.set_index(['title'])
 c = cast.set_index(['title']).sort_index()
@@ -36,6 +63,8 @@ i = cast.set_index(['year', 'type']).sort_index()
 i.groupby(level=[0,1]).size()
 
 i = cast.set_index('name').sort_index()
+? i.loc['Cary Grant',['year','n']].groupby('year').first()
+? i.loc['Cary Grant',['year','n']].groupby('year').last()
 i.loc['Cary Grant',['year','n']].groupby('year').mean().plot(kind='bar')
 i.loc['Cary Grant',['year','n']].groupby('year').max().plot(kind='bar')
 i.loc['Cary Grant',['year','n']].groupby('year').min().plot(kind='bar')
