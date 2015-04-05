@@ -33,10 +33,6 @@ titles.sort(['title'])
 titles.sort(['year'])
 titles.sort(['year', 'title'])
 
-Counting
-
-titles.value_counts()
-
 While doing exercises:
 
 titles.year.nsmallest()
@@ -53,6 +49,11 @@ v = titles.year.value_counts()
 v.index
 v.values
 v.plot()  # whoops
+
+Counting
+
+titles.value_counts()
+s.order()
 s.sort_index()
 v.sort_index().plot()
 
@@ -132,18 +133,17 @@ aa.plot(kind='area')
 f = aa.actor / (aa.actor + aa.actress)
 f.plot(ylim=[0,1], kind='area')
 
+.ix
+
 # Show following maneuver for a real final unstack()?
 #
 # pd.DataFrame({'row': df.unstack().unstack()}).T
 
-
-
-most #1 roles
-
 Session 5
 =========
 
-dates?
+.str.*
+.dt.*
 
 Session 6
 =========

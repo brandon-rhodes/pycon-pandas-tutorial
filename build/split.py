@@ -11,7 +11,7 @@ def main():
     cells = j['cells']
     for cell in cells:
         source = u''.join(cell['source'])
-        m = re.match(r'^# +(\d+)\.', source.strip())
+        m = re.search(r'# +(\d+)\. ', source.strip())
         if not m:
             continue
         n = int(m.group(1))
