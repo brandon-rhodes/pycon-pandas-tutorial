@@ -4,25 +4,37 @@ Session 1
 
 pre-scripted .from_csv() commands
 titles
+
+Pieces
+
+titles.info()
 len(titles)
 titles.head()
 titles.head(20)
 titles.tail()
-titles.info()
+
 h = titles.head()
-h.year
+h[['year', 'name']]
+h[['year']]
+
+Filtering
+
 h['year']
+h.year or h['year'] or h[['year', 'title']]
 h.year + 1000
 h.year - 2000
 h[h.year > 1960]
 h[h.year > 1960 & h.year < 1970]
 h[(h.year > 1960) & (h.year < 1970)]
-len(h)
-cast[['year', 'name']]
-cast[['year']]
+
+Sorting
+
 titles.sort(['title'])
 titles.sort(['year'])
 titles.sort(['year', 'title'])
+
+Counting
+
 titles.value_counts()
 
 While doing exercises:
@@ -32,6 +44,10 @@ titles.year.nlargest()
 
 Session 2
 =========
+
+h.year.mean()
+h.year.min()
+h.year.max()
 
 v = titles.year.value_counts()
 v.index
