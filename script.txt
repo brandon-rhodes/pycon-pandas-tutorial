@@ -33,10 +33,18 @@ titles.year.nlargest()
 Session 2
 =========
 
+v = titles.year.value_counts()
+v.index
+v.values
+v.plot()  # whoops
+s.sort_index()
+v.sort_index().plot()
+
 cast.info()
 cast.index
 cast.columns
 
+c = cast.set_index(['title'])
 c = cast.set_index(['title'])
 c = cast.set_index(['title']).sort_index()
 %%time c.loc['Sleuth']
@@ -61,6 +69,8 @@ c.loc['Sleuth'].index
 Session 3
 =========
 
+TODO: show that .loc can take a range
+
 c = cast
 c.groupby('year').size()
 c.groupby(['year', 'type']).size()
@@ -83,5 +93,20 @@ Session 4
 
 .describe()
 pd.DataFrame({'row': df.unstack().unstack()}).T
+stack and unstack?
 
-reindex()
+Session 5
+=========
+
+dates?
+
+Session 6
+=========
+
+s.dt.*
+s.str.*
+
+.isnull()
+.notnull()
+.dropna()
+.fillna()

@@ -10,60 +10,22 @@ carrying join data in a set vs list and performance difference?
 
 Star Wars actors: how many movies did they each go on to be in?
 
-1. df, series, indexes, filters
--------------------------------
-
-df.from_csv()
-
-len(df)
-df.head()
-df.tail()
-df.info()
-
-df['column']
-df.column
-df.column > 1940
-(df.column > 1940) & (df.column < 1950)
-df[df.column > 1940]
-df[['column', 'column2']]
-
-s.value_counts()
-s.nsmallest() and s.nlargest()
-df.sort('column')
-
 plt.bar(x, y, align='center')
 plt.plot()
 
-2. indexes
-
-df.index
-df.columns
-
-s.set_index()
 s.set_index(drop=False)
 s.set_index(append=True)
-s.reset_index()
 s.reset_index(level=)
 s.reset_index(drop=True)
 
-.sort_index()
-.loc[1870:1893]
 .map()?
-df.index
 df.index.names
 
 s.order() vs s.sort()
 s.order(na_position=...)
 
-3. groupby
-
-
-
-4. Time series fanciness
-
 multiindexes? time series?
 
-df.groupby('A').sum()
 df.groupby(['A','B']).sum()
 
 df.swaplevel()
@@ -92,12 +54,7 @@ s.mode()
 df.sum()
 df.std()
 
-df.dropna()
-df.fillna()
 df.drop_duplicates()
-
-s.str.*
-s.dt.*
 
 df["grade"] = df["raw_grade"].astype("category")
 df["grade"].cat.categories = ["very good", "good", "very bad"]
@@ -123,9 +80,7 @@ s.mask()
 date_range()
 DataFrame() from dict
 df.convert_objects(convert_numeric=True) or convert_dates='coerce'
-df.values
 df.values.dtype?
-df.describe()
 df.T
 df.sort_index() and how every level of a column index must be named
 df.where()
@@ -234,12 +189,6 @@ Ranges are inclusive!
 df.transform()
 index rename, set_names, set_levels, and set_labels
 index & index, index | index
-
-Structure
----------
-
-Have them use df[year>1950] or whatever at first, getting individual
-sums and such, and then teach groupby() as a way to do that en masse?
 
 http://pandas.pydata.org/pandas-docs/dev/advanced.html#data-alignment-and-using-reindex ?
 
