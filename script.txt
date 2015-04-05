@@ -91,9 +91,38 @@ a.loc[:1942].plot(kind='area', stacked=False)
 Session 4
 =========
 
-.describe()
-pd.DataFrame({'row': df.unstack().unstack()}).T
-stack and unstack?
+Indexing and grouping has been moving our data left.
+"Unstacking" moves it up, to columns!
+
+c = cast
+#c = c[c.year // 10 == 198]
+c = c[c.n <= 3]
+c = c.groupby(['year', 'type', 'n']).size()
+c = c.unstack(1)
+Detour:
+  c.swaplevel(0,1).loc[1].plot(ylim=0)
+  c.swaplevel(0,1).loc[1].plot(ylim=0, kind='area')
+f = c.actor / (c.actor + c.actress)
+f = f.unstack()
+f.plot(ylim=[0,1])
+
+aa = cast[['year', 'type']].groupby(['year', 'type']).size()
+aa = aa.loc[:2014].unstack()
+aa.head()
+
+aa.plot()
+aa.plot(kind='area')
+
+f = aa.actor / (aa.actor + aa.actress)
+f.plot(ylim=[0,1], kind='area')
+
+# Show following maneuver for a real final unstack()?
+#
+# pd.DataFrame({'row': df.unstack().unstack()}).T
+
+
+
+most #1 roles
 
 Session 5
 =========
