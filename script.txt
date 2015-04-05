@@ -3,26 +3,32 @@ Session 1
 =========
 
 pre-scripted .from_csv() commands
+titles
+len(titles)
 titles.head()
 titles.head(20)
 titles.tail()
 titles.info()
-titles.shape
 h = titles.head()
+h.year
+h['year']
 h.year + 1000
 h.year - 2000
 h[h.year > 1960]
 h[h.year > 1960 & h.year < 1970]
 h[(h.year > 1960) & (h.year < 1970)]
-h.count()
-h.year.count()
-titles.count()
+len(h)
+cast[['year', 'name']]
+cast[['year']]
 titles.sort(['title'])
 titles.sort(['year'])
 titles.sort(['year', 'title'])
-titles.year.nsmallest(7)
-titles.year.nlargest(7)
 titles.value_counts()
+
+While doing exercises:
+
+titles.year.nsmallest()
+titles.year.nlargest()
 
 Session 2
 =========

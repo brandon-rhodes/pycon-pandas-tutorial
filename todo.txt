@@ -8,23 +8,25 @@ More tricks from http://pandas-docs.github.io/pandas-docs-travis/visualization.h
 plus plotting?
 carrying join data in a set vs list and performance difference?
 
+Star Wars actors: how many movies did they each go on to be in?
+
 1. df, series, indexes, filters
 -------------------------------
 
 df.from_csv()
+
+len(df)
 df.head()
 df.tail()
 df.info()
-df.shape
 
 df['column']
 df.column
 df.column > 1940
-df.column > 1940 & df.column < 1950
+(df.column > 1940) & (df.column < 1950)
 df[df.column > 1940]
+df[['column', 'column2']]
 
-df.count()
-s.count()
 s.value_counts()
 s.nsmallest() and s.nlargest()
 df.sort('column')
@@ -240,3 +242,7 @@ Have them use df[year>1950] or whatever at first, getting individual
 sums and such, and then teach groupby() as a way to do that en masse?
 
 http://pandas.pydata.org/pandas-docs/dev/advanced.html#data-alignment-and-using-reindex ?
+
+df.shape
+df.count()
+s.count()
