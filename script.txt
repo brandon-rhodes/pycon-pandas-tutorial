@@ -133,8 +133,6 @@ aa.plot(kind='area')
 f = aa.actor / (aa.actor + aa.actress)
 f.plot(ylim=[0,1], kind='area')
 
-.ix
-
 # Show following maneuver for a real final unstack()?
 #
 # pd.DataFrame({'row': df.unstack().unstack()}).T
@@ -145,11 +143,13 @@ Session 5
 .str.*
 .dt.*
 
+broadcast df['foo'] = 9
+
 Session 6
 =========
 
-s.dt.*
-s.str.*
+.rename(columns={...})
+.concat(df)
 
 .isnull()
 .notnull()
