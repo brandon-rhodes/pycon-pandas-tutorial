@@ -7,27 +7,37 @@ titles
 
 Pieces
 
-titles.info()
 len(titles)
-titles.head()
-titles.head(20)
-titles.tail()
-
+titles.head() and .head(20)
+titles.tail() and .tail(10)
 h = titles.head()
-h[['year', 'name']]
-h[['year']]
+
+Series
+
+h['year'] or h.year
+h.year.size   does this even
+h.year.min()
+h.year.max()
+h.year.nlargest()
+h.year.nsmallest()
+h.year.mean()
+h.year + 1000
+h.year - 2000
 
 Filtering
 
-h['year']
-h.year or h['year'] or h[['year', 'title']]
-h.year + 1000
-h.year - 2000
+h.year > 1960
 h[h.year > 1960]
 h[h.year > 1960 & h.year < 1970]
 h[(h.year > 1960) & (h.year < 1970)]
+h[h.title == '...']
 
-Sorting
+Simple aggregation
+
+v = titles.year.value_counts()
+
+Session 2
+=========
 
 titles.sort(['title'])
 titles.sort(['year'])
@@ -36,25 +46,17 @@ titles.sort(['year', 'title'])
 While doing exercises:
 
 truefalse.sum() ?
-titles.year.nsmallest()
-titles.year.nlargest()
 
-Session 2
-=========
+h[['year', 'name']]
+h[['year']]
 
-h.year.mean() ?
-h.year.min() ?
-h.year.max() ?
-
-v = titles.year.value_counts()
 v.index
 v.values
 v.plot()  # whoops
 
 Counting
 
-titles.value_counts()
-s.order()
+s.order()   ?
 s.sort_index()
 v.sort_index().plot()
 
