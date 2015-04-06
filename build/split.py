@@ -19,5 +19,23 @@ def main():
     for n, cells in sorted(session_cells.items()):
         print 'Session {}: {} cells'.format(n, len(cells))
 
+def convert(filename):
+    f = open(os.path.dirname(__file__) + '/../' + filename)
+    j = json.load(f)
+    cells = j['cells']
+    n = 0
+    for cell in cells:
+        if cell['cell_type'] != 'code':
+            continue
+        source = u''.join(cell['source'])
+        if source.startswith('#'):
+            n += 1
+    print '{:6}   {}'.format(n, filename)
+        #print cell
+
+def main2():
+    for filename in 'Solutions-1.ipynb',:
+        convert(filename)
+
 if __name__ == '__main__':
-    main()
+    main2()
