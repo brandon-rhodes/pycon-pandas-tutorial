@@ -5,26 +5,19 @@ Session 1
 pre-scripted .from_csv() commands
 titles
 
-Pieces
+Length, Head, Tail
 
 len(titles)
 titles.head() and .head(20)
 titles.tail() and .tail(10)
-h = titles.head()
 
-Series
+Filtering
 
 h['year'] or h.year
 h.year.size   does this even
-h.year.min()
-h.year.max()
-h.year.nlargest()
-h.year.nsmallest()
-h.year.mean()
+
 h.year + 1000
 h.year - 2000
-
-Filtering
 
 h.year > 1960
 h[h.year > 1960]
@@ -32,37 +25,48 @@ h[h.year > 1960 & h.year < 1970]
 h[(h.year > 1960) & (h.year < 1970)]
 h[h.title == '...']
 
-Simple aggregation
-
-v = titles.year.value_counts()
-
-Session 2
-=========
+Sorting
 
 titles.sort(['title'])
 titles.sort(['year'])
 titles.sort(['year', 'title'])
 
-While doing exercises:
+String methods
 
-truefalse.sum() ?
+h.str.startswith
+h.str.endswith
+h.str.extract
+.dt.*
 
-h[['year', 'name']]
-h[['year']]
+Session 2
+=========
+
+Simple aggregation
+
+# h.year.min()
+# h.year.max()
+# h.year.mean()
+h.value_counts()
+
+(While doing exercises:)
+
+true_false.sum()
+
+cast.columns ?
 
 v.index
 v.values
 v.plot()  # whoops
-
-Counting
-
-s.order()   ?
 s.sort_index()
 v.sort_index().plot()
 
-cast.info()
-cast.index
-cast.columns
+h[['year', 'name']]
+h[['year']]
+
+Counting
+
+Session 3
+=========
 
 c = cast.set_index(['title'])
 c = cast.set_index(['title'])
@@ -86,9 +90,6 @@ c.loc[('Sleuth',1972)].sort('n').reset_index()
 
 c.loc['Sleuth'].index
 
-Session 3
-=========
-
 TODO: show that .loc can take a range
 
 c = cast
@@ -110,9 +111,6 @@ a.loc[:1942].plot(kind='area', stacked=False)
 
 Session 4
 =========
-
-Indexing and grouping has been moving our data left.
-"Unstacking" moves it up, to columns!
 
 c = cast
 #c = c[c.year // 10 == 198]
@@ -140,12 +138,13 @@ f.plot(ylim=[0,1], kind='area')
 #
 # pd.DataFrame({'row': df.unstack().unstack()}).T
 
+Indexing and grouping has been moving our data left.
+"Unstacking" moves it up, to columns!
+
 Session 5
 =========
 
-.str.*
-.dt.*
-
+reindex? or what? yeah.
 .isnull()
 .notnull()
 .dropna()
@@ -155,6 +154,8 @@ broadcast df['foo'] = 9
 
 Session 6
 =========
+
+.info()
 
 Pivot
 
@@ -169,3 +170,6 @@ r.set_index(['title', 'country'])[['date']].unstack()
 
 .rename(columns={...})
 .concat(df)
+
+(who had which co-stars how often)
+(what pairs of co-stars have appeared the most often together)

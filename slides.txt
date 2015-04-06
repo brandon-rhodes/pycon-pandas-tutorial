@@ -1,0 +1,35 @@
+
+
+
+  len(df)  df.head()  df.tail()          df.column + value
+  df['column'] -or- df.column            df.column + df.another_column
+
+  df[df.c == value]                            +  -  *  /  //  %
+  df[(df.c > value) & (df.d < value)]          == <  >  >= <= !=
+  df[(df.c < value) | (df.d > value)]
+
+  df.sort(['column'])                    df.column.str.contains(s)
+  df.sort(['column1', 'column2'])        df.column.str.endswith(s)
+                                         df.column.str.extract(re)
+                                         df.column.str.len()
+                                         df.column.str.lower()
+  df.sort_index()                        df.column.str.slice(start,stop,step)
+                                         df.column.str.startswith(s)
+                                         df.column.str.strip()
+
+  df.plot(...)                           df.column.dt.year
+                                         df.column.dt.month
+  df[['column1', 'column2']]             df.column.dt.day
+                                         df.column.dt.dayofweek
+                                         df.column.dt.dayofyear
+  df.set_index('c').sort_index('c')
+  df.set_index(['c','d']).sort_index(['c','d'])
+
+
+
+
+                 COLUMN INDEX
+
+     ROW INDEX  <-  DATA
+           .set_index()
+            .groupby()
