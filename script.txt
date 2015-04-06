@@ -143,6 +143,11 @@ Session 5
 .str.*
 .dt.*
 
+.isnull()
+.notnull()
+.dropna()
+.fillna()
+
 broadcast df['foo'] = 9
 
 Session 6
@@ -150,8 +155,3 @@ Session 6
 
 .rename(columns={...})
 .concat(df)
-
-.isnull()
-.notnull()
-.dropna()
-.fillna()
