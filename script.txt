@@ -35,15 +35,16 @@ titles.sort(['year', 'title'])
 
 While doing exercises:
 
+truefalse.sum() ?
 titles.year.nsmallest()
 titles.year.nlargest()
 
 Session 2
 =========
 
-h.year.mean()
-h.year.min()
-h.year.max()
+h.year.mean() ?
+h.year.min() ?
+h.year.max() ?
 
 v = titles.year.value_counts()
 v.index
@@ -152,6 +153,17 @@ broadcast df['foo'] = 9
 
 Session 6
 =========
+
+Pivot
+
+r = release_dates
+r = r[r.title.str.startswith('Star Wars: Episode')]
+r = r[r.country.str.startswith('U')]
+r.pivot('title', 'country', 'date')
+
+which is the same as
+
+r.set_index(['title', 'country'])[['date']].unstack()
 
 .rename(columns={...})
 .concat(df)
