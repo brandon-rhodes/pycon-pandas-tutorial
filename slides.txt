@@ -1,37 +1,20 @@
 
-  len(df)  df.head()  df.tail()         series + value -or- series1 + series2
-  df['column']  -or-  df.column         + - * / // % == != < > >= <=
-  df[['column1', 'column2']]
+  len(df)  df.head()  df.tail()         series + value      series1 + series2
+  df['column']  -or-  df.column         series.notnull()    series.isnull()
 
-  df[df.c == value]
-  df[(df.c > value) & (df.d < value)]   series.notnull() -or- series.isnull()
-  df[(df.c < value) | (df.d > value)]
+  df[df.c == value]                     df.sort('column')
+  df[(df.c > value) & (df.d < value)]   df.sort(['column1', 'column2'])
+  df[(df.c < value) | (df.d > value)]   series.order()
 
-  df.sort('column')                     series.order() 2
-  df.sort(['column1', 'column2'])
-                                        series.str.len(), contains, startswith
-2 df.plot(x='a', y='b', kind='bar')     series.plot(kind='bar')
+2 df[['column1', 'column2']]            series.str.len(), contains, startswith
+  df.plot(x='a', y='b', kind='bar')     series.plot(kind='bar')
 
 3 df.set_index('a').sort_index()        series.sort_index()
-  df.set_index(['a', 'b']).sort_index()
-  df.groupby('column')                  .size() .min() .max() .mean()
-  df.groupby(['column1', 'column2'])    .agg(['min', 'max'])
+  df.set_index(['a', 'b']).sort_index() series.size() .min() .max() .mean()
+  df.groupby('column')                  series.agg(['min', 'max'])
+  df.groupby(['column1', 'column2'])  5 series.dt.year .month .day .dayofweek
 
-4 df.unstack()  -or-  df.stack()
-5 df.join(df_with_index, ['a', 'b'])
-
-  df.merge(df2, how='outer', ...)
-  df.interpolate()                       series.interpolate()
-  df.rename({'a': 'y', 'b': 'z'})
-                                         series.dt.year month day
-  df[['column1', 'column2']]             series.dt.dayofweek dayofyear
-
-
-
-                 COLUMN INDEX
-
-     ROW INDEX  <-  DATA
-           .set_index()
-            .groupby()
-
- ffill bfill nearest
+4 df.unstack()                        5 df.join(df_with_index, ['a', 'b'])
+  df.stack()                            df.merge(df2, how='outer', ...)
+                                        df.interpolate()
+6 df.rename({'a': 'y', 'b': 'z'})       series.interpolate()
