@@ -23,16 +23,38 @@ def main():
 def convert(filename):
     f = open(filename)
     j = json.load(f)
-    cells = j['cells']
+    j['cells'] = list(filter_cells(filename, j['cells']))
+
+def filter_cells(filename, cells):
     n = 0
+    starting = True
     for cell in cells:
         if cell['cell_type'] != 'code':
             continue
         source = u''.join(cell['source'])
-        if source.startswith('#'):
-            n += 1
+
+        if starting:
+            if not source.startswith('# '):
+                yield cell
+            else:
+                starting = False
+
+        if not source.startswith('# '):
+            continue
+
+        question = []
+
+        for line in cell['source']:
+            if not line.startswith('# '):
+                break
+            question.append(line[2:].strip())
+
+        question = ' '.join(question)
+
+        print question
+
+        n += 1
     print '{:6}   {}'.format(n, filename)
-        #print cell
 
 def main2():
     for filename in sorted(glob.glob('Solutions-*.ipynb')):
