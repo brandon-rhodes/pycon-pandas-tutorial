@@ -14,7 +14,6 @@ titles.tail() and .tail(10)
 Filtering
 
 h['year'] or h.year
-h.year.size   does this even no
 
 h.year + 1000
 h.year - 2000
@@ -38,31 +37,27 @@ Operators
 
 h.str.len()
 h.str.startswith(s)
-h.str.extract ?
+# h.str.extract
 
 Aggregation
 
-h.value_counts()
+.value_counts().plot()  whoops!
+.index
+.value_counts().sort_index().plot(kind='bar')
 
-(While doing exercises:)
+.plot(x='column', y='column', kind='scatter')
 
-true_false.sum() ?
+# true_false.sum() ?
+# cast.columns ?
+# v.values
 
-cast.columns ?
-
-v.index
-v.values
-v.plot()  # whoops
-s.sort_index()
-v.sort_index().plot()
-
-h[['year', 'name']]
-h[['year']]
-
-Counting
+# h[['year', 'name']]
+# h[['year']]
 
 Session 3
 =========
+
+Indexes
 
 c = cast.set_index(['title'])
 c = cast.set_index(['title'])
@@ -86,7 +81,17 @@ c.loc[('Sleuth',1972)].sort('n').reset_index()
 
 c.loc['Sleuth'].index
 
-TODO: show that .loc can take a range
+Q: Why index? A1: Plotting.
+
+c = cast
+c = c[c.name == 'Michael Caine']
+c.set_index('year').sort_index().plot()
+Why are 1960s missing?
+c = c[c.n.notnull()]
+
+# show that .loc can take a range
+
+Q: Why index? A2: Groupby!
 
 c = cast
 c.groupby('year').size()
@@ -94,6 +99,8 @@ c.groupby(['year', 'type']).size()
 
 i = cast.set_index(['year', 'type']).sort_index()
 i.groupby(level=[0,1]).size()
+
+# TODO: show groupby(expression) here?
 
 i = cast.set_index('name').sort_index()
 ? i.loc['Cary Grant',['year','n']].groupby('year').first()
