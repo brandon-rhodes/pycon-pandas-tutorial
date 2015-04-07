@@ -37,7 +37,7 @@ Operators
 
 h.str.len()
 h.str.startswith(s)
-# h.str.extract
+h.str.extract(RE)
 
 Aggregation
 
@@ -45,7 +45,9 @@ Aggregation
 .index
 .value_counts().sort_index().plot(kind='bar')
 
-.plot(x='column', y='column', kind='scatter')
+c = cast
+c = c[c.title == 'Hamlet']
+c.plot(x='year', y='n', kind='scatter')
 
 # true_false.sum() ?
 # cast.columns ?
@@ -81,15 +83,9 @@ c.loc[('Sleuth',1972)].sort('n').reset_index()
 
 c.loc['Sleuth'].index
 
-Q: Why index? A1: Plotting.
+Q: Why index? A1: Speed!
 
-c = cast
-c = c[c.name == 'Michael Caine']
-c.set_index('year').sort_index().plot()
-Why are 1960s missing?
-c = c[c.n.notnull()]
-
-# show that .loc can take a range
+Do Star Wars!
 
 Q: Why index? A2: Groupby!
 
@@ -100,20 +96,36 @@ c.groupby(['year', 'type']).size()
 i = cast.set_index(['year', 'type']).sort_index()
 i.groupby(level=[0,1]).size()
 
-# TODO: show groupby(expression) here?
+# Need a 3-level groupby!
 
-i = cast.set_index('name').sort_index()
-? i.loc['Cary Grant',['year','n']].groupby('year').first()
-? i.loc['Cary Grant',['year','n']].groupby('year').last()
-i.loc['Cary Grant',['year','n']].groupby('year').mean().plot(kind='bar')
-i.loc['Cary Grant',['year','n']].groupby('year').max().plot(kind='bar')
-i.loc['Cary Grant',['year','n']].groupby('year').min().plot(kind='bar')
-i.loc['Cary Grant',['year','n']].groupby('year').agg(['min', 'mean', 'max'])
-a = i.loc['Cary Grant',['year','n']].groupby('year').agg(['min', 'mean', 'max'])
-a.loc[:1942].plot(kind='area', stacked=False)
+# TODO: show groupby(expression) here!
+
+# Different ways of viewing George Clooney:
+
+c = cast
+c = c[c.name == 'George Clooney']
+c.groupby(['title', 'year', 'character']).size()
+
+c = cast
+c = c[c.name == 'George Clooney']
+c.groupby(['character', 'title', 'year']).size()
+
+c = cast
+c = c[c.name == 'George Clooney']
+c.groupby(['character']).size()
+
+# How many times has he had two roles in the same film?
+
+c = cast
+c = c[c.name == 'George Clooney']
+c = c.groupby(['year', 'title']).size()
+c[c > 1]
 
 Session 4
 =========
+
+i.loc['Cary Grant',['year','n']].groupby('year').agg(['min', 'mean', 'max'])
+a = i.loc['Cary Grant',['year','n']].groupby('year').agg(['min', 'mean', 'max'])
 
 c = cast
 #c = c[c.year // 10 == 198]
@@ -144,8 +156,13 @@ f.plot(ylim=[0,1], kind='area')
 Indexing and grouping has been moving our data left.
 "Unstacking" moves it up, to columns!
 
+# in example: do it for actor?
+# unstack actor/actress and plot
+
 Session 5
 =========
+
+.join()
 
 .dt.*
 
@@ -156,6 +173,11 @@ reindex? or what? yeah.
 .fillna()
 
 broadcast df['foo'] = 9
+
+# Rank the actors of Star Wars by the number
+# of subsq films.
+
+
 
 Session 6
 =========

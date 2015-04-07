@@ -1,25 +1,27 @@
 
 
-  len(df)  df.head()  df.tail()         df.column.notnull()  -or-  .isnull()
-  df['column']  -or-  df.column         df.column + value
-                                        df.column + df.another_column
+  len(df)  df.head()  df.tail()         series.notnull()  -or-  .isnull()
+  df['column']  -or-  df.column         series + value
+                                        series + df.another_column
   df[df.c == value]
   df[(df.c > value) & (df.d < value)]   Mathematics  +  -  * / // %
   df[(df.c < value) | (df.d > value)]   Comparisons  == != < > >= <=
 
-  df.sort('column')                     df.column.str.len()
-  df.sort(['column1', 'column2'])       df.column.str.extract(RE)
-                                        df.column.str.startswith(S)
-  .sort_index()
-  .plot(x='col', y='col', kind='bar')   df.column.value_counts()
-and scatter
+  df.sort('column')                     series.order()
+  df.sort(['column1', 'column2'])
+                                      2 series.str.len(), .startswith(S), ...
+  df.plot(x='a', y='b', kind='bar')     series.plot(kind='bar')
+3 df.set_index('a').sort_index()        series.sort_index()
+  df.set_index(['a', 'b']).sort_index()
+  df.groupby('column')                  .size() .min() .max() .mean()
+  df.groupby(['column1', 'column2'])    .agg(['min', 'max'])
 
 
-                                         df.column.dt.year
-                                         df.column.dt.month
-  df[['column1', 'column2']]             df.column.dt.day
-                                         df.column.dt.dayofweek
-                                         df.column.dt.dayofyear
+                                         series.dt.year
+                                         series.dt.month
+  df[['column1', 'column2']]             series.dt.day
+                                         series.dt.dayofweek
+                                         series.dt.dayofyear
   df.set_index('c').sort_index('c')
   df.set_index(['c','d']).sort_index(['c','d'])
 
