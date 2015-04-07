@@ -1,8 +1,8 @@
 
   len(df)  df.head()  df.tail()         series + value -or- series1 + series2
-  df['column']  -or-  df.column
-  df[['column1', 'column2']]            Mathematics  +  -  * / // %
-                                        Comparisons  == != < > >= <=
+  df['column']  -or-  df.column         + - * / // % == != < > >= <=
+  df[['column1', 'column2']]
+
   df[df.c == value]
   df[(df.c > value) & (df.d < value)]   series.notnull() -or- series.isnull()
   df[(df.c < value) | (df.d > value)]
@@ -17,8 +17,12 @@
   df.groupby('column')                  .size() .min() .max() .mean()
   df.groupby(['column1', 'column2'])    .agg(['min', 'max'])
 
-4 df.unstack() -or- df.stack()
+4 df.unstack()  -or-  df.stack()
 5 df.join(df_with_index, ['a', 'b'])
+
+  df.merge(df2, how='outer', ...)
+  df.interpolate()                       series.interpolate()
+  df.rename({'a': 'y', 'b': 'z'})
                                          series.dt.year month day
   df[['column1', 'column2']]             series.dt.dayofweek dayofyear
 
@@ -29,3 +33,5 @@
      ROW INDEX  <-  DATA
            .set_index()
             .groupby()
+
+ ffill bfill nearest
