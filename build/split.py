@@ -1,5 +1,6 @@
 #!/usr/bin/env python2.7
 
+import glob
 import json
 import os
 import re
@@ -20,7 +21,7 @@ def main():
         print 'Session {}: {} cells'.format(n, len(cells))
 
 def convert(filename):
-    f = open(os.path.dirname(__file__) + '/../' + filename)
+    f = open(filename)
     j = json.load(f)
     cells = j['cells']
     n = 0
@@ -34,7 +35,7 @@ def convert(filename):
         #print cell
 
 def main2():
-    for filename in 'Solutions-1.ipynb',:
+    for filename in sorted(glob.glob('Solutions-*.ipynb')):
         convert(filename)
 
 if __name__ == '__main__':

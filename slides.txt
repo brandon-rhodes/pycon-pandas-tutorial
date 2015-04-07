@@ -1,21 +1,20 @@
 
 
 
-  len(df)  df.head()  df.tail()         df.column.notnull()  -or- isnull()
+  len(df)  df.head()  df.tail()         df.column.notnull()  -or-  isnull()
   df['column']  -or-  df.column         df.column + value
                                         df.column + df.another_column
   df[df.c == value]
   df[(df.c > value) & (df.d < value)]   Mathematics  +  -  * / // %
   df[(df.c < value) | (df.d > value)]   Comparisons  == != < > >= <=
 
-  df.sort(['column'])                    df.column.str.contains(s)
-  df.sort(['column1', 'column2'])        df.column.str.endswith(s)
-                                         df.column.str.extract(re)
-                                         df.column.str.len()
-                                         df.column.str.lower()
-  df.sort_index()                        df.column.str.slice(start,stop,step)
-                                         df.column.str.startswith(s)
-                                         df.column.str.strip()
+  df.sort('column')                     df.column.str.len()
+  df.sort(['column1', 'column2'])       df.column.str.extract(RE)
+                                        df.column.str.startswith(S)
+  .sort_index()
+  .plot()  -and- .plot(kind='bar')      df.column.value_counts()
+
+
 
   df.plot(...)                           df.column.dt.year
                                          df.column.dt.month

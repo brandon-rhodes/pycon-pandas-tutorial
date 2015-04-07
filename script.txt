@@ -31,21 +31,17 @@ titles.sort(['title'])
 titles.sort(['year'])
 titles.sort(['year', 'title'])
 
-String methods
-
-h.str.startswith
-h.str.endswith
-h.str.extract
-.dt.*
-
 Session 2
 =========
 
-Simple aggregation
+Operators
 
-# h.year.min()
-# h.year.max()
-# h.year.mean()
+h.str.len()
+h.str.startswith(s)
+h.str.extract ?
+
+Aggregation
+
 h.value_counts()
 
 (While doing exercises:)
@@ -143,6 +139,8 @@ Indexing and grouping has been moving our data left.
 
 Session 5
 =========
+
+.dt.*
 
 reindex? or what? yeah.
 .isnull()
