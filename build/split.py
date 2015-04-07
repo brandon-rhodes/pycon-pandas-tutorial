@@ -5,6 +5,26 @@ import json
 import os
 import re
 
+def blank_code_cell():
+    return {
+        "cell_type": "code",
+        "execution_count": None,
+        "metadata": {
+            "collapsed": True
+        },
+        "outputs": [],
+        "source": [],
+    }
+
+def question_cell(text):
+    return {
+        "cell_type": "markdown",
+        "metadata": {
+            "collapsed": True
+        },
+        "source": '### ' + text.strip(),
+    }
+
 def main():
     session_cells = {n: [] for n in range(1, 6+1)}
     f = open(os.path.dirname(__file__) + '/../All.ipynb')
@@ -24,6 +44,9 @@ def convert(filename):
     f = open(filename)
     j = json.load(f)
     j['cells'] = list(filter_cells(filename, j['cells']))
+    assert 'Solutions' in filename
+    with open(filename.replace('Solutions', 'Exercises'), 'w') as f:
+        f.write(json.dumps(j, indent=2))
 
 def filter_cells(filename, cells):
     n = 0
@@ -51,7 +74,10 @@ def filter_cells(filename, cells):
 
         question = ' '.join(question)
 
-        print question
+        yield question_cell(question)
+
+        yield blank_code_cell()
+        yield blank_code_cell()
 
         n += 1
     print '{:6}   {}'.format(n, filename)
