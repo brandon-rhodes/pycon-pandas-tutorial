@@ -9,7 +9,7 @@
 
   df.sort('column')                     series.order()
   df.sort(['column1', 'column2'])
-                                      2 series.str.len(), .startswith(S), ...
+                                      2 series.str.len() contains() startswith()
   df.plot(x='a', y='b', kind='bar')     series.plot(kind='bar')
 3 df.set_index('a').sort_index()        series.sort_index()
   df.set_index(['a', 'b']).sort_index()
