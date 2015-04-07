@@ -14,7 +14,7 @@ titles.tail() and .tail(10)
 Filtering
 
 h['year'] or h.year
-h.year.size   does this even
+h.year.size   does this even no
 
 h.year + 1000
 h.year - 2000
@@ -50,7 +50,7 @@ h.value_counts()
 
 (While doing exercises:)
 
-true_false.sum()
+true_false.sum() ?
 
 cast.columns ?
 

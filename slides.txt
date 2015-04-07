@@ -1,12 +1,12 @@
 
 
 
-  len(df)  df.head()  df.tail()          df.column + value
-  df['column'] -or- df.column            df.column + df.another_column
-
-  df[df.c == value]                            +  -  *  /  //  %
-  df[(df.c > value) & (df.d < value)]          == <  >  >= <= !=
-  df[(df.c < value) | (df.d > value)]
+  len(df)  df.head()  df.tail()         df.column.notnull()
+  df['column']  -or-  df.column         df.column + value
+                                        df.column + df.another_column
+  df[df.c == value]
+  df[(df.c > value) & (df.d < value)]   Mathematics  +  -  * / // %
+  df[(df.c < value) | (df.d > value)]   Comparisons  == != < > >= <=
 
   df.sort(['column'])                    df.column.str.contains(s)
   df.sort(['column1', 'column2'])        df.column.str.endswith(s)
