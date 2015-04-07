@@ -3,8 +3,8 @@
   df['column']  -or-  df.column         series.notnull()    series.isnull()
 
   df[df.c == value]                     df.sort('column')
-  df[(df.c > value) & (df.d < value)]   df.sort(['column1', 'column2'])
-  df[(df.c < value) | (df.d > value)]   series.order()
+  df[(df.c >= value) & (df.d < value)]  df.sort(['column1', 'column2'])
+  df[(df.c < value) | (df.d != value)]  series.order()
 
 2 df[['column1', 'column2']]            series.str.len(), contains, startswith
   df.plot(x='a', y='b', kind='bar')     series.plot(kind='bar')
