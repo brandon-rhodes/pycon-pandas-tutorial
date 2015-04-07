@@ -1,7 +1,7 @@
 
 
 
-  len(df)  df.head()  df.tail()         df.column.notnull()
+  len(df)  df.head()  df.tail()         df.column.notnull()  -or- isnull()
   df['column']  -or-  df.column         df.column + value
                                         df.column + df.another_column
   df[df.c == value]
