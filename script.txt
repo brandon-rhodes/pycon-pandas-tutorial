@@ -159,6 +159,20 @@ Indexing and grouping has been moving our data left.
 # in example: do it for actor?
 # unstack actor/actress and plot
 
+MOVE BACK TO 3:
+
+# Across all movies named "Hamlet",
+# what is the average "n" of the character Hamlet each decade?
+
+c = cast
+c = c[c.title == 'Hamlet']
+c = c[c.character == 'Hamlet']
+c = c.groupby([c.year // 10 * 10]).n.mean()
+
+AND POLONIUS TOO
+
+How many 'superman' vs 'batman' roles each decade
+
 Session 5
 =========
 
