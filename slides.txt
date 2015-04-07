@@ -9,12 +9,12 @@
 2 df[['column1', 'column2']]            series.str.len(), contains, startswith
   df.plot(x='a', y='b', kind='bar')     series.plot(kind='bar')
 
-3 df.set_index('a').sort_index()        series.sort_index()
-  df.set_index(['a', 'b']).sort_index() series.size() .min() .max() .mean()
-  df.groupby('column')                  series.agg(['min', 'max'])
-  df.groupby(['column1', 'column2'])  5 series.dt.year .month .day .dayofweek
+3 df.set_index('a').sort_index()        df.loc['value'] -or- df.loc[('v','u')]
+  df.set_index(['a', 'b']).sort_index() series.sort_index()
+  df.groupby('column')                  .size() .mean() .min() .max()
+  df.groupby(['column1', 'column2'])    .agg(['min', 'max'])
 
-4 df.unstack()                        5 df.join(df_with_index, ['a', 'b'])
-  df.stack()                            df.merge(df2, how='outer', ...)
-                                        df.interpolate()
-6 df.rename({'a': 'y', 'b': 'z'})       series.interpolate()
+4 df.unstack()                        5 series.dt.year, month, day, dayofweek
+  df.stack()                            df.join(df_with_index, ['a', 'b'])
+6 df.rename({'a': 'y', 'b': 'z'})       df.merge(df2, how='outer', ...)
+  df.fillna(method='...')               df.interpolate() series.interpolate()
