@@ -213,3 +213,5 @@ r.set_index(['title', 'country'])[['date']].unstack()
 
 (who had which co-stars how often)
 (what pairs of co-stars have appeared the most often together)
+
+todo: muppets

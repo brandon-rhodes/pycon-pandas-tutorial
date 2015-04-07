@@ -1,30 +1,26 @@
 
-
-  len(df)  df.head()  df.tail()         series.notnull() -or- series.isnull()
-  df['column']  -or-  df.column         series + value
-                                        series + df.another_column
+  len(df)  df.head()  df.tail()         series + value -or- series1 + series2
+  df['column']  -or-  df.column
+  df[['column1', 'column2']]            Mathematics  +  -  * / // %
+                                        Comparisons  == != < > >= <=
   df[df.c == value]
-  df[(df.c > value) & (df.d < value)]   Mathematics  +  -  * / // %
-  df[(df.c < value) | (df.d > value)]   Comparisons  == != < > >= <=
+  df[(df.c > value) & (df.d < value)]   series.notnull() -or- series.isnull()
+  df[(df.c < value) | (df.d > value)]
 
-  df.sort('column')                     series.order()
+  df.sort('column')                     series.order() 2
   df.sort(['column1', 'column2'])
-                                      2 series.str.len() contains() startswith()
-  df.plot(x='a', y='b', kind='bar')     series.plot(kind='bar')
+                                        series.str.len(), contains, startswith
+2 df.plot(x='a', y='b', kind='bar')     series.plot(kind='bar')
+
 3 df.set_index('a').sort_index()        series.sort_index()
   df.set_index(['a', 'b']).sort_index()
   df.groupby('column')                  .size() .min() .max() .mean()
   df.groupby(['column1', 'column2'])    .agg(['min', 'max'])
 
-
-                                         series.dt.year
-                                         series.dt.month
-  df[['column1', 'column2']]             series.dt.day
-                                         series.dt.dayofweek
-                                         series.dt.dayofyear
-  df.set_index('c').sort_index('c')
-  df.set_index(['c','d']).sort_index(['c','d'])
-
+4 df.unstack() -or- df.stack()
+5 df.join(df_with_index, ['a', 'b'])
+                                         series.dt.year month day
+  df[['column1', 'column2']]             series.dt.dayofweek dayofyear
 
 
 
