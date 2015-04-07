@@ -149,6 +149,8 @@ aa.plot(kind='area')
 f = aa.actor / (aa.actor + aa.actress)
 f.plot(ylim=[0,1], kind='area')
 
+.fillna() somewhere here
+
 # Show following maneuver for a real final unstack()?
 #
 # pd.DataFrame({'row': df.unstack().unstack()}).T
@@ -181,10 +183,7 @@ Session 5
 .dt.*
 
 reindex? or what? yeah.
-.isnull()
-.notnull()
 .dropna()
-.fillna()
 
 broadcast df['foo'] = 9
 
