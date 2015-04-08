@@ -14,10 +14,10 @@
   df.groupby('column')                  .size() .mean() .min() .max()
   df.groupby(['column1', 'column2'])    .agg(['min', 'max'])
  4                 5               5
-  df.unstack()      s.dt.year       df.join(df_with_index, ['a', 'b'])
-  df.stack()        s.dt.month      df.merge(df2, how='outer', ...)
-  df.fillna(value)  s.dt.day        df.interpolate() series.interpolate()
-  s.fillna(value)   s.dt.dayofweek 6df.rename({'a': 'y', 'b': 'z'})
+  df.unstack()      s.dt.year       df.merge(df2, how='outer', ...)
+  df.stack()        s.dt.month    6 df.rename({'a': 'y', 'b': 'z'})
+  df.fillna(value)  s.dt.day        pd.concat([df1, df2])
+  s.fillna(value)   s.dt.dayofweek
 
 
 

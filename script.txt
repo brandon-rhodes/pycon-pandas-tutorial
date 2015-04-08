@@ -2,17 +2,19 @@
 Session 1
 =========
 
-pre-scripted .from_csv() commands
-titles
+Open Exercise-1
+Point out .from_csv functions
 
-Length, Head, Tail
+VIEWING
 
 len(titles)
 titles.head() and .head(20)
 titles.tail() and .tail(10)
+titles
 
-Filtering
+FILTERING
 
+h = titles.head()
 h['year'] or h.year
 
 h.year + 1000
@@ -25,7 +27,7 @@ h[(h.year > 1960) & (h.year < 1970)]
 t.year // 10 * 10
 h[h.title == '...']
 
-Sorting
+SORTING
 
 titles.sort(['title'])
 titles.sort(['year'])
@@ -34,74 +36,60 @@ titles.sort(['year', 'title'])
 Session 2
 =========
 
-Operators
+STRING METHODS
 
 h.str.len()
 h.str.startswith(s)
 h.str.extract(RE)
 
-Aggregation
+AGGREGATION
 
-.value_counts().plot()  whoops!
-.index
-.value_counts().sort_index().plot(kind='bar')
+titles.year.value_counts()
+titles.year.value_counts().plot()  whoops!
+titles.year.index
+titles.year.value_counts().sort_index().plot()
+titles.year.value_counts().sort_index().plot(kind='bar')
 
 c = cast
-c = c[c.title == 'Hamlet']
+c = c[c.character == 'Kermit the Frog]
 c.plot(x='year', y='n', kind='scatter')
 
-# true_false.sum() ?
-# cast.columns ?
-# v.values
+COLUMNS
 
-# h[['year', 'name']]
-# h[['year']]
+Can be hard to see data
+
+c = cast
+c = c[c.character == 'Kermit the Frog']
+c = c[['year', 'n']]
+c
+
+Can also:
+
+c[['year']]
 
 Session 3
 =========
 
-Indexes
+INDEXES - SPEED
 
+%%time cast[cast.title == 'Sleuth']
 c = cast.set_index(['title'])
-c = cast.set_index(['title'])
+%%time c.loc['Sleuth']
 c = cast.set_index(['title']).sort_index()
 %%time c.loc['Sleuth']
-%%time cast[cast.title == 'Sleuth']
 
-c = cast.set_index(['title', 'year'])
 c = cast.set_index(['title', 'year']).sort_index()
 c.loc['Sleuth']
 c.loc['Sleuth',1996]
-c.loc['Sleuth',1996].sort('n')
 c.loc[('Sleuth',1996),'character']
 c.loc[('Sleuth',1996),('character','n')]
-c.loc[('Sleuth',1996),('character','n')].sort('n')
 
-c.loc[('Sleuth',1972)].sort('n').reset_index('title')
-c.loc[('Sleuth',1972)].sort('n').reset_index('year')
-c.loc[('Sleuth',1972)].sort('n').reset_index(['title', 'year'])
-c.loc[('Sleuth',1972)].sort('n').reset_index()
+.reset_index('title')
+.reset_index('year')
+.reset_index(['title', 'year'])
+.reset_index()
 
-c.loc['Sleuth'].index
-
-Q: Why index? A1: Speed!
-
-Do Star Wars!
-
-Q: Why index? A2: Groupby!
-
-c = cast
-c.groupby('year').size()
-c.groupby(['year', 'type']).size()
-
-i = cast.set_index(['year', 'type']).sort_index()
-i.groupby(level=[0,1]).size()
-
-# Need a 3-level groupby!
-
-# TODO: show groupby(expression) here!
-
-# Different ways of viewing George Clooney:
+INDEXES - GROUP BY
 
 c = cast
 c = c[c.name == 'George Clooney']
@@ -122,84 +110,84 @@ c = c[c.name == 'George Clooney']
 c = c.groupby(['year', 'title']).size()
 c[c > 1]
 
+c = cast
+c = c[c.name == 'George Clooney']
+c.groupby([c.year // 10 * 10, 'character']).size()
+
+c = cast
+c = c[c.name == 'George Clooney']
+c.groupby(['character', c.year // 10 * 10]).size()
+
+TODO: mean min max!
+
 Session 4
 =========
 
-do a superman batman thing
-
-unstack is so great for plotting
-
-i.loc['Cary Grant',['year','n']].groupby('year').agg(['min', 'mean', 'max'])
-a = i.loc['Cary Grant',['year','n']].groupby('year').agg(['min', 'mean', 'max'])
+UNSTACK
 
 c = cast
-#c = c[c.year // 10 == 198]
-c = c[c.n <= 3]
-c = c.groupby(['year', 'type', 'n']).size()
-c = c.unstack(1)
-Detour:
-  c.swaplevel(0,1).loc[1].plot(ylim=0)
-  c.swaplevel(0,1).loc[1].plot(ylim=0, kind='area')
-f = c.actor / (c.actor + c.actress)
-f = f.unstack()
-f.plot(ylim=[0,1])
+c = c[(c.character == 'Kermit the Frog') | (c.character == 'Oscar the Grouch')]
+g = c.groupby(['character', c.year // 10 * 10]).size()
+g
 
-aa = cast[['year', 'type']].groupby(['year', 'type']).size()
-aa = aa.loc[:2014].unstack()
-aa.head()
+How can we compare years?  Unstack!
 
-aa.plot()
-aa.plot(kind='area')
+g.unstack('year')
+g.unstack('character')
 
-f = aa.actor / (aa.actor + aa.actress)
-f.plot(ylim=[0,1], kind='area')
+u = g.unstack('character')
+u['difference'] = u['Kermit the Frog'] - u['Oscar the Grouch']
+u
 
-.fillna() somewhere here
+But, NaN.
 
-# Show following maneuver for a real final unstack()?
-#
-# pd.DataFrame({'row': df.unstack().unstack()}).T
+u = g.unstack('character').fillna(0)
+u['difference'] = u['Kermit the Frog'] - u['Oscar the Grouch']
+u
 
-Indexing and grouping has been moving our data left.
-"Unstacking" moves it up, to columns!
+THE DANGERS OF UNSTACK
 
-# in example: do it for actor?
-# unstack actor/actress and plot
+Do it again?  Oh no, we get a series!
 
-MOVE BACK TO 3:
+.stack() again to repair damage, BUT can devolve to series again.
 
-# Across all movies named "Hamlet",
-# what is the average "n" of the character Hamlet each decade?
+PLOTTING
 
-c = cast
-c = c[c.title == 'Hamlet']
-c = c[c.character == 'Hamlet']
-c = c.groupby([c.year // 10 * 10]).n.mean()
+Ratio?
 
-AND POLONIUS TOO
+u = g.unstack('character')
+total = u['Oscar the Grouch'] + u['Kermit the Frog']
+u['difference'] = u['Oscar the Grouch'] / total
+u.difference.plot(ylim=[0,1])
 
-How many 'superman' vs 'batman' roles each decade
+Indexing and grouping has been moving our data LEFT.
+"Unstacking" moves it UP, to columns!  Stacking, DOWN.
 
 Session 5
 =========
 
-.join()
+r = release_dates
+r = r[r.title == 'Inception']
+r.date.dt.year
 
-.dt.*
+year month date dayofweek dayofyear
 
-reindex? or what? yeah.
-.dropna()
+MERGE
 
-broadcast df['foo'] = 9
+What if we were interested in fetching release dates,
+NOT by information in that table itself,
+but by information over in "cast"?
 
-# Rank the actors of Star Wars by the number
-# of subsq films.
-
-
+c = cast
+c = c[c.name == 'Ellen Page']
+c = c.merge(release_dates)
+c
 
 Session 6
 =========
 
+reindex? or what? yeah.
+.dropna()
 .info()
 
 Pivot
@@ -216,13 +204,10 @@ r.set_index(['title', 'country'])[['date']].unstack()
 .rename(columns={...})
 .concat(df)
 
-(who had which co-stars how often)
-(what pairs of co-stars have appeared the most often together)
-
-todo: muppets
-
-
 Thoughts for later
 ==================
 
+(who had which co-stars how often)
+(what pairs of co-stars have appeared the most often together)
 Can you use merge to find who was in movies with each other?
+
