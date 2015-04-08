@@ -186,6 +186,18 @@ c
 Session 6
 =========
 
+c = cast
+c = c[c.n <= 2]
+c = c[c.name == 'Cary Grant']
+
+c = c.merge(cast, on=['title', 'year'])
+c = c[c.n_y <= 2]
+c = c[c.name_y != 'Cary Grant']
+c = c[['title', 'year', 'name_x', 'name_y']]
+c
+
+c.groupby('name_y').size().order(ascending=False)
+
 reindex? or what? yeah.
 .dropna()
 .info()
