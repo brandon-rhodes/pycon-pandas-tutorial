@@ -17,6 +17,7 @@
 
    3. Start the IPython Notebook and visit the "pandas-tutorial"
       folder from inside the .zip
+
 
 
   len(df)       series + value    df[df.c == value]
@@ -25,6 +26,12 @@
   df.COLUMN     series.isnull()   df.sort('column')
   df['COLUMN']  series.order()    df.sort(['column1', 'column2'])
 
+
+
+
+                        import sys
+                        reload(sys)
+                        sys.setdefaultencoding('utf-8')
 
 
 
@@ -43,9 +50,14 @@
   df.COLUMN     series.isnull()   df.sort('column')
   df['COLUMN']  series.order()    df.sort(['column1', 'column2'])
 
-  s.str.len()        s.value_counts()
-  s.str.contains()   s.sort_index()    df[['column1', 'column2']]
-  s.str.startswith() s.plot(...)       df.plot(x='a', y='b', kind='bar')
+s.str.len()        s.value_counts() df[['column1', 'column2']]
+s.str.contains()   s.sort_index() df.plot(x='a', y='b', kind='scatter')
+s.str.startswith() s.plot(...)      df.plot(x='a', y='b', kind='bar')
+
+
+                        import sys
+                        reload(sys)
+                        sys.setdefaultencoding('utf-8')
 
 
 
@@ -56,15 +68,21 @@
   df['COLUMN']  series.order()    df.sort(['column1', 'column2'])
 
   s.str.len()        s.value_counts()
-  s.str.contains()   s.sort_index()    df[['column1', 'column2']]
-  s.str.startswith() s.plot(...)       df.plot(x='a', y='b', kind='bar')
+  s.str.contains()   s.sort_index()   df[['column1', 'column2']]
+  s.str.startswith() s.plot(...)      df.plot(x='a', y='b', kind='bar')
 
   df.set_index('a').sort_index()        df.loc['value']
   df.set_index(['a', 'b']).sort_index() df.loc[('v','u')]
   df.groupby('column')                  .size() .mean() .min() .max()
   df.groupby(['column1', 'column2'])    .agg(['min', 'max'])
 
+
+
+  "The Pink Panther"
 
+
+  brandon@rhodesmill.org
+
 
   len(df)       series + value    df[df.c == value]
   df.head()     series + series2  df[(df.c >= value) & (df.d < value)]
@@ -73,8 +91,8 @@
   df['COLUMN']  series.order()    df.sort(['column1', 'column2'])
 
   s.str.len()        s.value_counts()
-  s.str.contains()   s.sort_index()    df[['column1', 'column2']]
-  s.str.startswith() s.plot(...)       df.plot(x='a', y='b', kind='bar')
+  s.str.contains()   s.sort_index()   df[['column1', 'column2']]
+  s.str.startswith() s.plot(...)      df.plot(x='a', y='b', kind='bar')
 
   df.set_index('a').sort_index()        df.loc['value']
   df.set_index(['a', 'b']).sort_index() df.loc[('v','u')]

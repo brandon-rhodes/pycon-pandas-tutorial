@@ -2,6 +2,10 @@
 Session 1
 =========
 
+You should do install if you have not already.
+We have Internet!  But, I have USB keys too.
+Format: lesson, exercises, solutions.
+
 Open Exercise-1
 Point out .from_csv functions
 
@@ -223,3 +227,4 @@ Thoughts for later
 (what pairs of co-stars have appeared the most often together)
 Can you use merge to find who was in movies with each other?
 
+Fix later: second exercise s/hamlet/batman/
