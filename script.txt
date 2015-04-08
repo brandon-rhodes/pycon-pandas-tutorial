@@ -22,6 +22,7 @@ h.year > 1960
 h[h.year > 1960]
 h[h.year > 1960 & h.year < 1970]
 h[(h.year > 1960) & (h.year < 1970)]
+t.year // 10 * 10
 h[h.title == '...']
 
 Sorting
@@ -124,6 +125,10 @@ c[c > 1]
 Session 4
 =========
 
+do a superman batman thing
+
+unstack is so great for plotting
+
 i.loc['Cary Grant',['year','n']].groupby('year').agg(['min', 'mean', 'max'])
 a = i.loc['Cary Grant',['year','n']].groupby('year').agg(['min', 'mean', 'max'])
 
@@ -215,3 +220,9 @@ r.set_index(['title', 'country'])[['date']].unstack()
 (what pairs of co-stars have appeared the most often together)
 
 todo: muppets
+
+
+Thoughts for later
+==================
+
+Can you use merge to find who was in movies with each other?
