@@ -1,20 +1,35 @@
 
-  len(df)  df.head()  df.tail()         series + value      series1 + series2
-  df['column']  -or-  df.column         series.notnull()    series.isnull()
+  len(df)       series + value    df[df.c == value]
+  df.head()     series + series2  df[(df.c >= value) & (df.d < value)]
+  df.tail()     series.notnull()  df[(df.c < value) | (df.d != value)]
+  df.COLUMN     series.isnull()   df.sort('column')
+  df['COLUMN']  series.order()    df.sort(['column1', 'column2'])
 
-  df[df.c == value]                     df.sort('column')
-  df[(df.c >= value) & (df.d < value)]  df.sort(['column1', 'column2'])
-  df[(df.c < value) | (df.d != value)]  series.order()
+2 s.str.len()        s.value_counts()
+  s.str.contains()   s.sort_index()    df[['column1', 'column2']]
+  s.str.startswith() s.plot(...)       df.plot(x='a', y='b', kind='bar')
 
-2 df[['column1', 'column2']]            series.str.len(), contains, startswith
-  df.plot(x='a', y='b', kind='bar')     series.plot(kind='bar')
-
-3 df.set_index('a').sort_index()        df.loc['value'] -or- df.loc[('v','u')]
-  df.set_index(['a', 'b']).sort_index() series.sort_index()
+3 df.set_index('a').sort_index()        df.loc['value']
+  df.set_index(['a', 'b']).sort_index() df.loc[('v','u')]
   df.groupby('column')                  .size() .mean() .min() .max()
   df.groupby(['column1', 'column2'])    .agg(['min', 'max'])
+ 4                 5               5
+  df.unstack()      s.dt.year       df.join(df_with_index, ['a', 'b'])
+  df.stack()        s.dt.month      df.merge(df2, how='outer', ...)
+  df.fillna(value)  s.dt.day        df.interpolate() series.interpolate()
+  s.fillna(value)   s.dt.dayofweek 6df.rename({'a': 'y', 'b': 'z'})
 
-4 df.unstack()                        5 series.dt.year, month, day, dayofweek
-  df.stack()                            df.join(df_with_index, ['a', 'b'])
-6 df.rename({'a': 'y', 'b': 'z'})       df.merge(df2, how='outer', ...)
-  df.fillna(method='...')               df.interpolate() series.interpolate()
+
+
+
+
+
+                          Thanks!
+
+                      Any questions?
+
+Local variables:
+ mode:text
+ mode:page
+ fill-column:59
+End:
