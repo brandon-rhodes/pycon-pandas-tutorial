@@ -144,7 +144,7 @@ s.str.startswith() s.plot(...)      df.plot(x='a', y='b', kind='bar')
   df.groupby(['column1', 'column2'])    .agg(['min', 'max'])
 
   df.unstack()      s.dt.year       df.merge(df2, how='outer', ...)
-  df.stack()        s.dt.month      df.rename({'a': 'y', 'b': 'z'})
+  df.stack()        s.dt.month      df.rename(columns={'a': 'y', 'b': 'z'})
   df.fillna(value)  s.dt.day        pd.concat([df1, df2])
   s.fillna(value)   s.dt.dayofweek
 
