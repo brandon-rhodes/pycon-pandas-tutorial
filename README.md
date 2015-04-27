@@ -37,8 +37,8 @@ running the `conda` command shown above will install all three.
 
 Note that having `git` is not necessary for getting the materials.
 Simply click the “Download ZIP” button over on the right-hand side of
-this project’s front page, and its files will be delivered to you as a
-ZIP archive instead:
+this repository’s front page at the following link, and its files will
+be delivered to you as a ZIP archive:
 
 https://github.com/brandon-rhodes/pycon-pandas-tutorial
 
@@ -52,9 +52,10 @@ tutorial’s `build` directory:
 * ftp://ftp.fu-berlin.de/pub/misc/movies/database/release-dates.list.gz
 
 To convert these into the CSV files that the tutorial needs, run the
-`BUILD.py` script, which will create the three CSV files in the `data`
-directory that you need to run all of the tutorial examples.  It should
-take about 5 minutes to run on a fast modern machine:
+`BUILD.py` script with either Python 2 or Python 3.  It will create the
+three CSV files in the `data` directory that you need to run all of the
+tutorial examples.  It should take about 5 minutes to run on a fast
+modern machine:
 
     $ python build/BUILD.py
 
