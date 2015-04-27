@@ -41,10 +41,10 @@ Once you have unpacked the ZIP file, download the following four
 [IMDB](https://www.imdb.com/) data files and place them in the
 tutorial’s `build` directory:
 
-ftp://ftp.fu-berlin.de/pub/misc/movies/database/actors.list.gz
-ftp://ftp.fu-berlin.de/pub/misc/movies/database/actresses.list.gz
-ftp://ftp.fu-berlin.de/pub/misc/movies/database/genres.list.gz
-ftp://ftp.fu-berlin.de/pub/misc/movies/database/release-dates.list.gz
+* ftp://ftp.fu-berlin.de/pub/misc/movies/database/actors.list.gz
+* ftp://ftp.fu-berlin.de/pub/misc/movies/database/actresses.list.gz
+* ftp://ftp.fu-berlin.de/pub/misc/movies/database/genres.list.gz
+* ftp://ftp.fu-berlin.de/pub/misc/movies/database/release-dates.list.gz
 
 To convert these into the CSV files that the tutorial needs, run the
 `BUILD.py` script, which will create the three CSV files in the `data`
