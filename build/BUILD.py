@@ -126,7 +126,7 @@ def main():
 
             fields = split_on_tabs(line.strip(b'\n'))
             if fields[0]:
-                name = fields[0].decode('ascii', 'replace')
+                name = decode_ascii(fields[0])
                 name = swap_names(name)
 
             if not_a_real_movie(fields[1]):
@@ -148,9 +148,7 @@ def main():
             if not fields[1].startswith(b'['):
                 continue
 
-            character = fields[1].strip(b'[]').decode('ascii', 'replace')
-            if not character:
-                character = '(N/A)'
+            character = decode_ascii(fields[1].strip(b'[]'))
 
             if len(fields) > 2 and fields[2].startswith(b'<'):
                 n = int(fields[2].strip(b'<>'))
@@ -161,7 +159,15 @@ def main():
             if title is None:
                 continue
 
-            output.writerow((title, year, name, role_type, character, n))
+            if character == 'N/A':
+                clist = ['(N/A)']
+            else:
+                clist = character.split('/')
+
+            for character in clist:
+                if not character:
+                    continue
+                output.writerow((title, year, name, role_type, character, n))
 
     print('Finished writing "cast.csv"')
 
@@ -205,6 +211,10 @@ def swap_names(name):
         last, first = name.split(',', 1)
         name = first.strip() + ' ' + last.strip()
     return name
+
+
+def decode_ascii(s):
+    return s.decode('ascii', 'replace').replace(u'\ufffd', u'?')
 
 
 if __name__ == '__main__':
