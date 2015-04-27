@@ -30,8 +30,8 @@ next section for more detailed instructions):
 ## Detailed Instructions
 
 You will need Pandas, the IPython Notebook, and Matplotlib installed
-before you can successfully run the tutorial notebooks.  The (Anaconda
-Distribution)[http://continuum.io/downloads] is a great way to get up
+before you can successfully run the tutorial notebooks.  The [Anaconda
+Distribution](http://continuum.io/downloads) is a great way to get up
 and running quickly without having to install them each separately —
 running the `conda` command shown above will install all three.
 
