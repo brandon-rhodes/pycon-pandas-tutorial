@@ -4,15 +4,14 @@ import csv
 import gzip
 import os
 import re
+from datetime import datetime
 
-#import pandas as pd
+split_on_tabs = re.compile(b'\t+').split
 
 def main():
     os.chdir(os.path.dirname(__file__))
     if not os.path.isdir('../data'):
         os.makedirs('../data')
-
-    #m = gzip.open('movies.list.gz')
 
     # Load movie titles.
 
@@ -26,62 +25,112 @@ def main():
     assert next(lines) == b'==================\n'
     assert next(lines) == b'\n'
 
-    match = re.compile(r'^(.*) \((\d+)(/[IVXL]+)?\)\t+(.*)$').match
+    print('Reading "genres.list.gz" to find interesting movies')
 
     for line in lines:
-        if (line.startswith(b'"')       # TV show
-            or b'{' in line             # TV episode
-            or b' (????' in line        # Unknown year
-            or b' (TV)' in line         # TV Movie
-            or b' (V)' in line          # Video
-            or b' (VG)' in line         # Video game
-            ):
+        if not_a_real_movie(line):
             continue
 
+        fields = split_on_tabs(line.strip(b'\n'))
+        raw_title = fields[0]
+        genre = fields[1]
+
         try:
-            line = line.strip().decode('ascii')
+            raw_title.decode('ascii')
         except UnicodeDecodeError:
             continue
 
-        m = match(line.strip())
-        if m is None:
-            print(repr(line))
-            break
-            continue
-
-        title = m.group(1).strip('"')
-        year = int(m.group(2))
-        numeral = m.group(3)
-        genre = m.group(4)
-
-        if numeral is not None:
-            numeral = numeral.strip('/')
-            if numeral != 'I':
-                title = '{} ({})'.format(title, numeral)
-
-        ty = (title, year)
-
-        if genre in ('Adult', 'Documentary', 'Short'):
-            uninteresting_titles.add(ty)
+        if genre in (b'Adult', b'Documentary', b'Short'):
+            uninteresting_titles.add(raw_title)
         else:
-            titles.add(ty)
+            titles.add(raw_title)
 
-    titles = titles - uninteresting_titles
+    interesting_titles = titles - uninteresting_titles
+    del titles
     del uninteresting_titles
+
+    print('Found {0} titles'.format(len(interesting_titles)))
+
+    print('Writing "titles.csv"')
 
     with open('titles.csv', 'w') as f:
         w = csv.writer(f)
         w.writerow(('title', 'year'))
-        for ty in titles:
-            w.writerow(ty)
+        for raw_title in interesting_titles:
+            title_and_year = parse_title(raw_title)
+            w.writerow(title_and_year)
 
-    # output = open('titles.csv', 'wb')
-    # output.write(b'title,year\n')
-    # for title, year in titles:
-    #     output.write('{},{}\n'.format(title, year).encode('ascii'))
+    print('Finished writing "titles.csv"')
+    print('Reading release dates from "release-dates.list.gz"')
+
+    lines = iter(gzip.open('release-dates.list.gz'))
+    line = next(lines)
+    while line != b'RELEASE DATES LIST\n':
+        line = next(lines)
+    assert next(lines) == b'==================\n'
+
+    output = csv.writer(open('release_dates.csv', 'w'))
+    output.writerow(('title', 'year', 'country', 'date'))
+
+    for line in lines:
+        if not_a_real_movie(line):
+            continue
+
+        if line.startswith(b'----'):
+            continue
+
+        fields = split_on_tabs(line.strip(b'\n'))
+        if len(fields) > 2:     # ignore "DVD premier" lines and so forth
+            continue
+
+        raw_title = fields[0]
+        if raw_title not in interesting_titles:
+            continue
+
+        title, year = parse_title(raw_title)
+        if title is None:
+            continue
+
+        country, datestr = fields[1].decode('ascii').split(':')
+        try:
+            date = datetime.strptime(datestr, '%d %B %Y').date()
+        except ValueError:
+            continue  # incomplete dates like "April 2014"
+        output.writerow((title, year, country, date))
+
+    print('Finished writing "release_dates.csv"')
 
 
-# def reduce_data():
+def not_a_real_movie(line):
+    return (
+        line.startswith(b'"')       # TV show
+        or b'{' in line             # TV episode
+        or b' (????' in line        # Unknown year
+        or b' (TV)' in line         # TV Movie
+        or b' (V)' in line          # Video
+        or b' (VG)' in line         # Video game
+        )
+
+
+match_title = re.compile(r'^(.*) \((\d+)(/[IVXL]+)?\)$').match
+
+def parse_title(raw_title):
+    try:
+        title = raw_title.decode('ascii')
+    except UnicodeDecodeError:
+        return None, None
+
+    m = match_title(title)
+    title = m.group(1)
+    year = int(m.group(2))
+    numeral = m.group(3)
+
+    if numeral is not None:
+        numeral = numeral.strip('/')
+        if numeral != 'I':
+            title = '{} ({})'.format(title, numeral)
+
+    return title, year
 
     # names = pd.read_csv('name.csv', usecols=[0,1,2,4], index_col=0,
     #                     names=['id', 'name', 'numeral', 'sex'],
@@ -100,43 +149,6 @@ def main():
 #     names[names.name.str.startswith('George Clooney')]
 
 #     names.sex.unique()
-
-#     titles = pd.read_csv('title.csv', usecols=[0,1,2,3,4], index_col=0,
-#                          names=['id', 'title', 'numeral', 'type', 'year'])
-
-#     # 1 Feature film
-#     # 2 TV series
-#     # 3 TV movie
-#     # 4 Adult film
-#     # 5 (no rows match)
-#     # 6 Video game
-#     # 7 TV series episode
-
-#     titles = titles[(titles.type == 1) & (titles.year.notnull())]
-#     del titles['type']
-
-#     n = titles.numeral.notnull() & (titles.numeral != 'I')
-#     titles.title[n] = titles.title[n] + ' (' + titles.numeral[n] + ')'
-#     del titles['numeral']
-
-#     titles = titles.drop_duplicates()
-
-#     print('{:,}'.format(len(titles)))
-#     print(titles.dtypes)
-#     titles.head()
-
-#     avoid_ids = set()
-#     with open('movie_info.csv') as f:
-#         for row in csv.reader(f):
-#             if row[2] == '3' and row[3] in ('Adult', 'Short', 'Documentary'):
-#                 avoid_ids.add(int(row[1]))
-#     print('Number of movies to avoid:', len(avoid_ids))
-
-#     titles = titles.drop(titles.select(avoid_ids.__contains__).index)
-
-#     print('{:,}'.format(len(titles)))
-#     print(titles.dtypes)
-#     print(titles.head())
 
 #     characters = pd.read_csv('char_name.csv', usecols=[0,1], index_col=0,
 #                              names=['id', 'character'])
@@ -222,62 +234,6 @@ def main():
 #     cast[cast.title == 'Star Wars'].sort('n')
 
 
-#     # # Release Dates
-
-#     # In[20]:
-
-#     def filter_csv(chunk):
-#         r = chunk
-#         r = r[r.code == 16]
-#         #print(r.head())
-#         r = r[r.note.isnull()]
-#         r = r[['title_id', 'data']]
-#         print(len(r), end=' '),
-#         return r
-
-#     iter_csv = pd.read_csv(
-#         'movie_info.csv',
-#         usecols=[1,2,3,4],
-#         names=['title_id', 'code', 'data', 'note'],
-#         dtype={'note': 'str'},
-#         iterator=True,
-#         chunksize=100000,
-#         )
-#     release_dates_raw = pd.concat([filter_csv(chunk) for chunk in iter_csv])
-#     print()
-
-#     release_dates_raw.head()
-
-
-#     # In[21]:
-
-#     r = release_dates_raw
-
-#     r['country'] = r.data.str.extract('^(.*):')
-#     r['date'] = r.data.str.extract(':(.*)$')
-#     del r['data']
-
-#     r['date'] = pd.to_datetime(r.date, infer_datetime_format=True)
-#     release_dates_all = r
-#     release_dates_all.head()
-
-
-#     # In[22]:
-
-#     release_dates = pd.merge(titles[['title', 'year']], release_dates_all,
-#                              left_index=True, right_on='title_id', sort=False)
-#     del release_dates['title_id']
-#     release_dates = release_dates.drop_duplicates()
-#     release_dates.head()
-
-
-#     # # Save
-
-#     # In[23]:
-
-#     titles.to_csv('../data/titles.csv', index=False)
-
-
 #     # In[24]:
 
 #     cast.head()
@@ -286,16 +242,6 @@ def main():
 #     # In[25]:
 
 #     cast.to_csv('../data/cast.csv', index=False)
-
-
-#     # In[26]:
-
-#     release_dates.head()
-
-
-#     # In[27]:
-
-#     release_dates.to_csv('../data/release_dates.csv', index=False)
 
 
 # def swap_names(name):
