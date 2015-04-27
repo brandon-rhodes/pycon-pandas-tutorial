@@ -1,12 +1,11 @@
 #!/bin/bash
-#
-# All we want is the CSV files, but "imdbpy2sql.py" will not create them
-# unless it believes it can really talk to postgresql.
 
-wget -nc -nd -r -l 1 ftp://ftp.fu-berlin.de/pub/misc/movies/database/
-mkdir -p ../data
-imdbpy2sql.py -d . -u sqlite:imdb.db -c . --csv-only-write
-chmod -w *.csv
-rm *.db
+set -e
+cd "$( dirname "${BASH_SOURCE[0]}" )"
 
-#imdbpy2sql.py -d . -u postgres://host/database -c ../data --csv-only-write
+curl -O ftp://ftp.fu-berlin.de/pub/misc/movies/database/actors.list.gz
+curl -O ftp://ftp.fu-berlin.de/pub/misc/movies/database/actresses.list.gz
+curl -O ftp://ftp.fu-berlin.de/pub/misc/movies/database/genres.list.gz
+curl -O ftp://ftp.fu-berlin.de/pub/misc/movies/database/release-dates.list.gz
+
+python ./BUILD.py

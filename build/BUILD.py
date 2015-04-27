@@ -53,12 +53,12 @@ def main():
 
     print('Writing "titles.csv"')
 
-    with open('titles.csv', 'w') as f:
-        w = csv.writer(f)
-        w.writerow(('title', 'year'))
+    with open('../data/titles.csv', 'w') as f:
+        output = csv.writer(f)
+        output.writerow(('title', 'year'))
         for raw_title in interesting_titles:
             title_and_year = parse_title(raw_title)
-            w.writerow(title_and_year)
+            output.writerow(title_and_year)
 
     print('Finished writing "titles.csv"')
     print('Reading release dates from "release-dates.list.gz"')
@@ -69,7 +69,7 @@ def main():
         line = next(lines)
     assert next(lines) == b'==================\n'
 
-    output = csv.writer(open('release_dates.csv', 'w'))
+    output = csv.writer(open('../data/release_dates.csv', 'w'))
     output.writerow(('title', 'year', 'country', 'date'))
 
     for line in lines:
@@ -100,6 +100,71 @@ def main():
 
     print('Finished writing "release_dates.csv"')
 
+    output = csv.writer(open('../data/cast.csv', 'w'))
+    output.writerow(('title', 'year', 'name', 'type', 'character', 'n'))
+
+    for role_type, filename in (
+            ('actor', 'actors.list.gz'),
+            ('actress', 'actresses.list.gz'),
+            ):
+        print('Reading {0!r}'.format(filename))
+        lines = iter(gzip.open(filename))
+
+        line = next(lines)
+        while (b'Name' not in line) or (b'Titles' not in line):
+            line = next(lines)
+
+        assert b'----' in next(lines)
+
+        for line in lines:
+            if line.startswith(b'----------------------'):
+                break
+
+            line = line.rstrip()
+            if not line:
+                continue
+
+            fields = split_on_tabs(line.strip(b'\n'))
+            if fields[0]:
+                name = fields[0].decode('ascii', 'replace')
+                name = swap_names(name)
+
+            if not_a_real_movie(fields[1]):
+                continue
+
+            fields = fields[1].split(b'  ')
+            raw_title = fields[0]
+            if raw_title not in interesting_titles:
+                continue
+
+            if len(fields) < 2:
+                continue
+
+            if fields[1].startswith(b'('):  # uncredited, archive footage, etc
+                del fields[1]
+                if len(fields) < 2:
+                    continue
+
+            if not fields[1].startswith(b'['):
+                continue
+
+            character = fields[1].strip(b'[]').decode('ascii', 'replace')
+            if not character:
+                character = '(N/A)'
+
+            if len(fields) > 2 and fields[2].startswith(b'<'):
+                n = int(fields[2].strip(b'<>'))
+            else:
+                n = ''
+
+            title, year = parse_title(raw_title)
+            if title is None:
+                continue
+
+            output.writerow((title, year, name, role_type, character, n))
+
+    print('Finished writing "cast.csv"')
+
 
 def not_a_real_movie(line):
     return (
@@ -128,127 +193,18 @@ def parse_title(raw_title):
     if numeral is not None:
         numeral = numeral.strip('/')
         if numeral != 'I':
-            title = '{} ({})'.format(title, numeral)
+            title = '{0} ({1})'.format(title, numeral)
 
     return title, year
 
-    # names = pd.read_csv('name.csv', usecols=[0,1,2,4], index_col=0,
-    #                     names=['id', 'name', 'numeral', 'sex'],
-    #                     dtype={'sex': str})
 
-#     names.name = names.name.apply(swap_names)
-
-#     n = names.numeral.notnull() & (names.numeral != 'I')
-#     names.loc[n, 'name'] = names.name[n] + ' (' + names.numeral[n] + ')'
-#     del names['numeral']
-
-#     print(len(names))
-#     print(names.dtypes)
-#     names.head()
-
-#     names[names.name.str.startswith('George Clooney')]
-
-#     names.sex.unique()
-
-#     characters = pd.read_csv('char_name.csv', usecols=[0,1], index_col=0,
-#                              names=['id', 'character'])
-#     characters.sort_index()
-#     print('Number of movie characters: {:,}'.format(len(characters)))
-
-#     characters = characters.drop_duplicates()
-#     print('{:,}'.format(len(characters)))
-
-#     characters.head()
-
-#     for i, role_type_name in enumerate((
-#             None, 'actor', 'actress', 'producer', 'writer',
-#             'cinematographer', 'composer', 'costume designer',
-#             'director', 'editor', 'miscellaneous crew',
-#             'production designer', 'guest')):
-#         print(i, role_type_name)
-
-#     if 'raw_cast' in dir():
-#         del raw_cast
-
-#     column_names = ['name_id', 'title_id', 'character_id', 'n', 'role_type']
-
-#     raw_cast = pd.read_csv(
-#         'cast_info.csv', usecols=[1,2,3,5,6], names=column_names,
-#         dtype=dict.fromkeys(['name_id', 'title_id', 'title', 'role_type'], 'int32'))
-
-#     print('{:,}'.format(len(raw_cast)))
-#     print(raw_cast.dtypes)
-#     raw_cast.head()
-
-
-#     # In[17]:
-
-#     if 'cast' in dir():
-#         del cast
-
-#     # Other columns:
-#     # 3  Role id, or 1 if they appeared as themselves
-#     # 4  Notes like "(archive footage)" and "(uncredited)"
-#     # 5  Order of actor/actress in billing
-#     # 6  Role type (see role types in previous cell)
-
-#     # Only keep rows for actors and actresses, in named roles.
-
-#     cast = raw_cast.loc[
-#         ((raw_cast.role_type == 1) | (raw_cast.role_type == 2))
-#         & raw_cast.character_id.notnull()
-#         ].copy()
-
-#     cast['type'] = cast.pop('role_type').map({1: 'actor', 2: 'actress'})
-
-#     # Only keep rows that match our table of feature films.
-
-#     print(cast.head())
-#     cast = pd.merge(titles[['title', 'year']], cast,
-#                     left_index=True, right_on='title_id', sort=False)
-#     del cast['title_id']
-
-#     cast = pd.merge(names[['name']], cast, left_index=True, right_on='name_id', sort=False)
-#     del cast['name_id']
-
-#     cast = pd.merge(characters[['character']], cast, left_index=True, right_on='character_id', sort=False)
-#     del cast['character_id']
-
-#     # Re-order columns
-
-#     cast['year'] = cast['year'].astype('int32')
-
-#     cast = cast[['title', 'year', 'name', 'type', 'character', 'n']]
-
-#     print('{:,}'.format(len(cast)))
-#     print(cast.dtypes)
-
-
-#     # In[18]:
-
-#     cast.drop_duplicates().reindex().head()
-
-
-#     # In[19]:
-
-#     cast[cast.title == 'Star Wars'].sort('n')
-
-
-#     # In[24]:
-
-#     cast.head()
-
-
-#     # In[25]:
-
-#     cast.to_csv('../data/cast.csv', index=False)
-
-
-# def swap_names(name):
-#     if ',' in name:
-#         last, first = name.split(',', 1)
-#         name = first.strip() + ' ' + last.strip()
-#     return name
+def swap_names(name):
+    if name.endswith(' (I)'):
+        name = name[:-4]
+    if ',' in name:
+        last, first = name.split(',', 1)
+        name = first.strip() + ' ' + last.strip()
+    return name
 
 
 if __name__ == '__main__':
