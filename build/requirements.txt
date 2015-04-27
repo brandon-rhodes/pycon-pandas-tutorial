@@ -1,2 +1,0 @@
-imdbpy
-psycopg2
