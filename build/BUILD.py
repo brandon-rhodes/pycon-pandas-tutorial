@@ -9,7 +9,7 @@ from datetime import datetime
 split_on_tabs = re.compile(b'\t+').split
 
 def main():
-    os.chdir(os.path.dirname(__file__))
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
     if not os.path.isdir('../data'):
         os.makedirs('../data')
 

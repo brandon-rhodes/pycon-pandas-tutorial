@@ -27,7 +27,7 @@ def question_cell(text):
 
 def main():
     session_cells = {n: [] for n in range(1, 6+1)}
-    f = open(os.path.dirname(__file__) + '/../All.ipynb')
+    f = open(os.path.dirname(os.path.abspath(__file__)) + '/../All.ipynb')
     j = json.load(f)
     cells = j['cells']
     for cell in cells:
