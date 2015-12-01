@@ -21,7 +21,7 @@ needed to download and set up the data set that we used.
 If you have both `conda` and `git` on your system (otherwise, read the
 next section for more detailed instructions):
 
-    $ conda install --yes ipython-notebook matplotlib pandas
+    $ conda install --yes jupyter matplotlib pandas
     $ git clone https://github.com/brandon-rhodes/pycon-pandas-tutorial.git
     $ cd pycon-pandas-tutorial
     $ build/BUILD.sh
