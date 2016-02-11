@@ -9,6 +9,8 @@ deliver it, and also when other instructors are able to do so.
 If you want to follow along with the tutorial at home, here is the
 YouTube recording of the 3-hour tutorial at PyCon itself:
 
+[![Watch the video tutorial on YouTube](youtube.png)](http://www.youtube.com/watch?v=5JnMutdy6Fw "Pandas From The Ground Up - PyCon 2015")
+
 https://www.youtube.com/watch?v=5JnMutdy6Fw
 
 To make it useful to as many people as possible, I hereby release it
