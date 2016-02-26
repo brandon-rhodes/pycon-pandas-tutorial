@@ -129,6 +129,9 @@ def main():
                 name = decode_ascii(fields[0])
                 name = swap_names(name)
 
+            if len(fields) < 2:
+                raise ValueError('broken line: {!r}'.format(line))
+
             if not_a_real_movie(fields[1]):
                 continue
 
