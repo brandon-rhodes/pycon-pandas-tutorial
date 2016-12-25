@@ -1,0 +1,31 @@
+
+[This is the email I sent out ahead of time to the students who were
+ scheduled to attend the tutorial at PyCon 2015.]
+
+Wow. PyCon is almost here! How can you help make our Pandas tutorial on Wednesday morning a success?
+
+Easy — by installing Pandas right now! :)
+
+This is the first of three emails you will receive before we all arrive and start the tutorial at 9am on Tuesday.
+
+(a) This email says how to install Pandas.
+
+(b) A Monday evening email will suggest a sample command to try running to make sure that your install is working.
+
+(c) Finally, a Tuesday email will point you at a few data sets to download before you arrive for the tutorial!
+
+A PyCon tutorial is only about three hours long, and we want every minute that we can spare to be available for learning, conversing, and working together on data analysis problems. The best way to make the time as valuable as possible is, if you can, to get Pandas installed and working on the laptop you will be bringing with you into the tutorial. Although one or two TA's will be present to help with last-minute emergencies, an already-working Pandas install is the best way to be prepared to pay attention to the material and not be distracted by unfortunate obstacles thrown in your way by your operating system.
+
+I recommend the following combination:
+
+Python + Pandas + IPython Notebook + matplotlib
+
+Fortunately, there is a very easy way to get this modern data-science stack installed: the Anaconda distribution from Continuum Analytics! Their version of Python comes bundled with everything you need, and it is what I myself will be running in the tutorial:
+
+http://continuum.io/downloads
+
+For this evening — or tomorrow, if that is when you have a few minutes — set the goal of installing the components listed above and then being able to start up an IPython Notebook and see its interface appear in your browser. By clicking on "New -> Python" to create a new notebook, typing "3+3" into the box, and pressing Shift+Enter to get the result "6", you can confirm that the IPython Notebook is working and able to talk to Python itself.
+
+Feel free to email me at brandon@rhodesmill.org if you have any questions, and I look forward to seeing you all on Tuesday!
+
+— Brandon
