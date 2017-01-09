@@ -4,9 +4,14 @@ import csv
 import gzip
 import os
 import re
+import sys
 from datetime import datetime
 
 split_on_tabs = re.compile(b'\t+').split
+if sys.version_info[0] < 3:
+    openstr = 'wb'
+else:
+    openstr = 'w'
 
 def main():
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -53,7 +58,7 @@ def main():
 
     print('Writing "titles.csv"')
 
-    with open('../data/titles.csv', 'wb') as f:
+    with open('../data/titles.csv', openstr) as f:
         output = csv.writer(f)
         output.writerow(('title', 'year'))
         for raw_title in interesting_titles:
@@ -69,7 +74,7 @@ def main():
         line = next(lines)
     assert next(lines) == b'==================\n'
 
-    output = csv.writer(open('../data/release_dates.csv', 'wb'))
+    output = csv.writer(open('../data/release_dates.csv', openstr))
     output.writerow(('title', 'year', 'country', 'date'))
 
     for line in lines:
@@ -100,7 +105,7 @@ def main():
 
     print('Finished writing "release_dates.csv"')
 
-    output = csv.writer(open('../data/cast.csv', 'wb'))
+    output = csv.writer(open('../data/cast.csv', openstr))
     output.writerow(('title', 'year', 'name', 'type', 'character', 'n'))
 
     for role_type, filename in (
