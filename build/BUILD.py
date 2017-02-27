@@ -8,6 +8,7 @@ from datetime import datetime
 
 split_on_tabs = re.compile(b'\t+').split
 
+
 def main():
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     if not os.path.isdir('../data'):
@@ -53,7 +54,7 @@ def main():
 
     print('Writing "titles.csv"')
 
-    with open('../data/titles.csv', 'wb') as f:
+    with open('../data/titles.csv', 'w') as f:
         output = csv.writer(f)
         output.writerow(('title', 'year'))
         for raw_title in interesting_titles:
@@ -69,7 +70,7 @@ def main():
         line = next(lines)
     assert next(lines) == b'==================\n'
 
-    output = csv.writer(open('../data/release_dates.csv', 'wb'))
+    output = csv.writer(open('../data/release_dates.csv', 'w'))
     output.writerow(('title', 'year', 'country', 'date'))
 
     for line in lines:
@@ -100,7 +101,7 @@ def main():
 
     print('Finished writing "release_dates.csv"')
 
-    output = csv.writer(open('../data/cast.csv', 'wb'))
+    output = csv.writer(open('../data/cast.csv', 'w'))
     output.writerow(('title', 'year', 'name', 'type', 'character', 'n'))
 
     for role_type, filename in (
@@ -187,6 +188,7 @@ def not_a_real_movie(line):
 
 
 match_title = re.compile(r'^(.*) \((\d+)(/[IVXL]+)?\)$').match
+
 
 def parse_title(raw_title):
     try:
