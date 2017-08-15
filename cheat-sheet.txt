@@ -23,8 +23,8 @@
   len(df)       series + value    df[df.c == value]
   df.head()     series + series2  df[(df.c >= value) & (df.d < value)]
   df.tail()     series.notnull()  df[(df.c < value) | (df.d != value)]
-  df.COLUMN     series.isnull()   df.sort('column')
-  df['COLUMN']  series.order()    df.sort(['column1', 'column2'])
+  df.COLUMN     series.isnull()   df.sort_values('column')
+  df['COLUMN']  series.order()    df.sort_values(['column1', 'column2'])
 
 
 
@@ -47,8 +47,8 @@
   len(df)       series + value    df[df.c == value]
   df.head()     series + series2  df[(df.c >= value) & (df.d < value)]
   df.tail()     series.notnull()  df[(df.c < value) | (df.d != value)]
-  df.COLUMN     series.isnull()   df.sort('column')
-  df['COLUMN']  series.order()    df.sort(['column1', 'column2'])
+  df.COLUMN     series.isnull()   df.sort_values('column')
+  df['COLUMN']  series.order()    df.sort_values(['column1', 'column2'])
 
 s.str.len()        s.value_counts() df[['column1', 'column2']]
 s.str.contains()   s.sort_index() df.plot(x='a', y='b', kind='scatter')
@@ -64,8 +64,8 @@ s.str.startswith() s.plot(...)      df.plot(x='a', y='b', kind='bar')
   len(df)       series + value    df[df.c == value]
   df.head()     series + series2  df[(df.c >= value) & (df.d < value)]
   df.tail()     series.notnull()  df[(df.c < value) | (df.d != value)]
-  df.COLUMN     series.isnull()   df.sort('column')
-  df['COLUMN']  series.order()    df.sort(['column1', 'column2'])
+  df.COLUMN     series.isnull()   df.sort_values('column')
+  df['COLUMN']  series.order()    df.sort_values(['column1', 'column2'])
 
   s.str.len()        s.value_counts()
   s.str.contains()   s.sort_index()   df[['column1', 'column2']]
@@ -87,8 +87,8 @@ s.str.startswith() s.plot(...)      df.plot(x='a', y='b', kind='bar')
   len(df)       series + value    df[df.c == value]
   df.head()     series + series2  df[(df.c >= value) & (df.d < value)]
   df.tail()     series.notnull()  df[(df.c < value) | (df.d != value)]
-  df.COLUMN     series.isnull()   df.sort('column')
-  df['COLUMN']  series.order()    df.sort(['column1', 'column2'])
+  df.COLUMN     series.isnull()   df.sort_values('column')
+  df['COLUMN']  series.order()    df.sort_values(['column1', 'column2'])
 
   s.str.len()        s.value_counts()
   s.str.contains()   s.sort_index()   df[['column1', 'column2']]
@@ -109,8 +109,8 @@ s.str.startswith() s.plot(...)      df.plot(x='a', y='b', kind='bar')
   len(df)       series + value    df[df.c == value]
   df.head()     series + series2  df[(df.c >= value) & (df.d < value)]
   df.tail()     series.notnull()  df[(df.c < value) | (df.d != value)]
-  df.COLUMN     series.isnull()   df.sort('column')
-  df['COLUMN']  series.order()    df.sort(['column1', 'column2'])
+  df.COLUMN     series.isnull()   df.sort_values('column')
+  df['COLUMN']  series.order()    df.sort_values(['column1', 'column2'])
 
   s.str.len()        s.value_counts()
   s.str.contains()   s.sort_index()    df[['column1', 'column2']]
@@ -131,8 +131,8 @@ s.str.startswith() s.plot(...)      df.plot(x='a', y='b', kind='bar')
   len(df)       series + value    df[df.c == value]
   df.head()     series + series2  df[(df.c >= value) & (df.d < value)]
   df.tail()     series.notnull()  df[(df.c < value) | (df.d != value)]
-  df.COLUMN     series.isnull()   df.sort('column')
-  df['COLUMN']  series.order()    df.sort(['column1', 'column2'])
+  df.COLUMN     series.isnull()   df.sort_values('column')
+  df['COLUMN']  series.order()    df.sort_values(['column1', 'column2'])
 
   s.str.len()        s.value_counts()
   s.str.contains()   s.sort_index()    df[['column1', 'column2']]

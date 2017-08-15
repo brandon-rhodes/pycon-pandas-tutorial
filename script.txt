@@ -33,9 +33,9 @@ h[h.title == '...']
 
 SORTING
 
-titles.sort(['title'])
-titles.sort(['year'])
-titles.sort(['year', 'title'])
+titles.sort_values(['title'])
+titles.sort_values(['year'])
+titles.sort_values(['year', 'title'])
 
 Session 2
 =========
