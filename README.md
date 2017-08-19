@@ -48,17 +48,17 @@ Once you have unpacked the ZIP file, download the following four
 [IMDB](https://www.imdb.com/) data files and place them in the
 tutorial’s `build` directory:
 
-* ftp://ftp.fu-berlin.de/pub/misc/movies/database/actors.list.gz
-* ftp://ftp.fu-berlin.de/pub/misc/movies/database/actresses.list.gz
-* ftp://ftp.fu-berlin.de/pub/misc/movies/database/genres.list.gz
-* ftp://ftp.fu-berlin.de/pub/misc/movies/database/release-dates.list.gz
+* ftp://ftp.fu-berlin.de/pub/temporaryaccess/misc/movies/database/actors.list.gz
+* ftp://ftp.fu-berlin.de/pub/temporaryaccess/misc/movies/database/actresses.list.gz
+* ftp://ftp.fu-berlin.de/pub/temporaryaccess/misc/movies/database/genres.list.gz
+* ftp://ftp.fu-berlin.de/pub/temporaryaccess/misc/movies/database/release-dates.list.gz
 
-If the above download links ask for authentication, please follow these alternate links to the same file:
+If the above links don’t work for you, try these alternate sources of the same files:
 
-* ftp://ftp.funet.fi/pub/mirrors/ftp.imdb.com/pub/actors.list.gz
-* ftp://ftp.funet.fi/pub/mirrors/ftp.imdb.com/pub/actresses.list.gz
-* ftp://ftp.funet.fi/pub/mirrors/ftp.imdb.com/pub/genres.list.gz
-* ftp://ftp.funet.fi/pub/mirrors/ftp.imdb.com/pub/release-dates.list.gz
+* ftp://ftp.funet.fi/pub/mirrors/ftp.imdb.com/pub/temporaryaccess/actors.list.gz
+* ftp://ftp.funet.fi/pub/mirrors/ftp.imdb.com/pub/temporaryaccess/actresses.list.gz
+* ftp://ftp.funet.fi/pub/mirrors/ftp.imdb.com/pub/temporaryaccess/genres.list.gz
+* ftp://ftp.funet.fi/pub/mirrors/ftp.imdb.com/pub/temporaryaccess/release-dates.list.gz
 
 To convert these into the CSV files that the tutorial needs, run the
 `BUILD.py` script with either Python 2 or Python 3.  It will create the
