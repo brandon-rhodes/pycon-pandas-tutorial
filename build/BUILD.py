@@ -184,6 +184,7 @@ def not_a_real_movie(line):
         or b' (TV)' in line         # TV Movie
         or b' (V)' in line          # Video
         or b' (VG)' in line         # Video game
+        or b' (segment ' in line    # Anthology film
         )
 
 
