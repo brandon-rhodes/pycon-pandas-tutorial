@@ -8,6 +8,8 @@ from datetime import datetime
 
 split_on_tabs = re.compile(b'\t+').split
 
+BAD_GENRES = {b'Adult', b'Documentary', b'Short', b'Horror', b'Reality-TV',
+              b'Talk-Show', b'Game-Show', b'Reality-tv'}
 
 def main():
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
@@ -41,7 +43,7 @@ def main():
         except UnicodeDecodeError:
             continue
 
-        if genre in (b'Adult', b'Documentary', b'Short'):
+        if genre in BAD_GENRES:
             uninteresting_titles.add(raw_title)
         else:
             titles.add(raw_title)
@@ -220,7 +222,7 @@ def swap_names(name):
 
 
 def decode_ascii(s):
-    return s.decode('ascii', 'replace').replace(u'\ufffd', u'?')
+    return s.decode('latin-1') #ascii', 'replace').replace(u'\ufffd', u'?')
 
 
 if __name__ == '__main__':
