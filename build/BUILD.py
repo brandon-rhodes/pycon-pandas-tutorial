@@ -103,7 +103,7 @@ def main():
 
     print('Finished writing "release_dates.csv"')
 
-    output = csv.writer(open('../data/cast.csv', 'w'))
+    output = csv.writer(open('../data/cast.csv', 'w', encoding="utf-8"))
     output.writerow(('title', 'year', 'name', 'type', 'character', 'n'))
 
     for role_type, filename in (
