@@ -4,6 +4,7 @@ import csv
 import gzip
 import os
 import re
+import sys
 from datetime import datetime
 
 split_on_tabs = re.compile(b'\t+').split
@@ -103,7 +104,10 @@ def main():
 
     print('Finished writing "release_dates.csv"')
 
-    output = csv.writer(open('../data/cast.csv', 'w', encoding="utf-8"))
+    if sys.version_info < (3, 0):
+        output = csv.writer(open('../data/cast.csv', 'w'))
+    else:
+        output = csv.writer(open('../data/cast.csv', 'w', encoding='utf-8'))
     output.writerow(('title', 'year', 'name', 'type', 'character', 'n'))
 
     for role_type, filename in (
