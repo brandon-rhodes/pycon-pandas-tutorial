@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  jupiter-notebook:
+    build: .
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/app
