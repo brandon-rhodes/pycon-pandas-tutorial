@@ -18,7 +18,16 @@ under the MIT license (see the accompanying `LICENSE.txt` file) and I
 have tried to make sure that this repository contains all of the scripts
 needed to download and set up the data set that we used.
 
-## Quick Start
+## Quick Start (🐳 Docker)
+```bash
+$ docker-compose up
+# .... this could take few minutes ....
+# .... ☕ It's coffee time ☕ ....
+#
+# click a link with token
+# http://127.0.0.1:8888/?token=<token>
+```
+## Quick Start (manual)
 
 If you have both `conda` and `git` on your system (otherwise, read the
 next section for more detailed instructions):
