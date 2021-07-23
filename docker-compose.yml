@@ -5,4 +5,6 @@ services:
     ports:
       - "8888:8888"
     volumes:
-      - .:/app
+      - my_volume:/app
+volumes:
+  my_volume:
