@@ -20,7 +20,7 @@ needed to download and set up the data set that we used.
 
 ## Quick Start (🐳 Docker)
 ```bash
-$ git clone https://github.com/brandon-rhodes/pycon-pandas-tutorial.git
+# clone and go inside the repo
 $ docker-compose up
 # .... this could take few minutes ....
 # .... ☕ It's coffee time ☕ ....
