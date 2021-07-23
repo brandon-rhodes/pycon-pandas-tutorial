@@ -20,6 +20,7 @@ needed to download and set up the data set that we used.
 
 ## Quick Start (🐳 Docker)
 ```bash
+$ git clone https://github.com/brandon-rhodes/pycon-pandas-tutorial.git
 $ docker-compose up
 # .... this could take few minutes ....
 # .... ☕ It's coffee time ☕ ....
@@ -27,16 +28,18 @@ $ docker-compose up
 # click a link with token
 # http://127.0.0.1:8888/?token=<token>
 ```
-## Quick Start (manual)
+## Quick Start (👷‍♂️ manual)
 
 If you have both `conda` and `git` on your system (otherwise, read the
 next section for more detailed instructions):
 
-    $ conda install --yes jupyter matplotlib pandas
-    $ git clone https://github.com/brandon-rhodes/pycon-pandas-tutorial.git
-    $ cd pycon-pandas-tutorial
-    $ build/BUILD.sh
-    $ ipython notebook
+```bash
+$ conda install --yes jupyter matplotlib pandas
+$ git clone https://github.com/brandon-rhodes/pycon-pandas-tutorial.git
+$ cd pycon-pandas-tutorial
+$ build/BUILD.sh
+$ ipython notebook
+```
 
 ## Detailed Instructions
 
