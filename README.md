@@ -18,28 +18,22 @@ under the MIT license (see the accompanying `LICENSE.txt` file) and I
 have tried to make sure that this repository contains all of the scripts
 needed to download and set up the data set that we used.
 
-## Quick Start (🐳 Docker)
-```bash
-# clone and go inside the repo
-$ docker-compose up
-# .... this could take few minutes ....
-# .... ☕ It's coffee time ☕ ....
-#
-# click a link with token
-# http://127.0.0.1:8888/?token=<token>
-```
-## Quick Start (👷‍♂️ manual)
+## Quick Start
 
 If you have both `conda` and `git` on your system (otherwise, read the
 next section for more detailed instructions):
 
-```bash
-$ conda install --yes jupyter matplotlib pandas
-$ git clone https://github.com/brandon-rhodes/pycon-pandas-tutorial.git
-$ cd pycon-pandas-tutorial
-$ build/BUILD.sh
-$ ipython notebook
-```
+    $ conda install --yes jupyter matplotlib pandas
+    $ git clone https://github.com/brandon-rhodes/pycon-pandas-tutorial.git
+    $ cd pycon-pandas-tutorial
+    $ build/BUILD.sh
+    $ ipython notebook
+
+## Start with Docker
+
+    $ git clone https://github.com/brandon-rhodes/pycon-pandas-tutorial.git
+    $ cd pycon-pandas-tutorial
+    $ ./container/run
 
 ## Detailed Instructions
 
@@ -73,9 +67,9 @@ If the above links don’t work for you, try these alternate sources of the same
 * ftp://ftp.funet.fi/pub/mirrors/ftp.imdb.com/pub/frozendata/release-dates.list.gz
 
 To convert these into the CSV files that the tutorial needs, run the
-`BUILD.py` script with either Python 2 or Python 3.  It will create the
+`BUILD.py` script with either Python 2 or Python 3.  It will create the
 three CSV files in the `data` directory that you need to run all of the
-tutorial examples.  It should take about 5 minutes to run on a fast
+tutorial examples.  It should take about 5 minutes to run on a fast
 modern machine:
 
     $ python build/BUILD.py

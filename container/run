@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -ex
+
+docker build --tag pycon-pandas-tutorial --file container/Dockerfile .
+exec docker run --rm -p 8888:8888 pycon-pandas-tutorial
