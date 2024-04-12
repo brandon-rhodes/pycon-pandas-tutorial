@@ -27,7 +27,7 @@ next section for more detailed instructions):
     $ git clone https://github.com/brandon-rhodes/pycon-pandas-tutorial.git
     $ cd pycon-pandas-tutorial
     $ build/BUILD.sh
-    $ ipython notebook
+    $ jupyter notebook
 
 ## Detailed Instructions
 
