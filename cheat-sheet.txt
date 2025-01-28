@@ -7,7 +7,7 @@
    1. Install Pandas and the IPython Notebook
 
       The Anaconda distribution includes Pandas built-in:
-      http://continuum.io/downloads
+      https://www.anaconda.com/download/
 
 
    2. Download and unzip "Pandas-Tutorial.zip" from
@@ -38,7 +38,7 @@
 
 
 
-      http://continuum.io/downloads
+      https://www.anaconda.com/download/
 
       https://github.com/brandon-rhodes/pycon-pandas-tutorial/releases
 

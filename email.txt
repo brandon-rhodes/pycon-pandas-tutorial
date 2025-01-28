@@ -22,7 +22,7 @@ Python + Pandas + IPython Notebook + matplotlib
 
 Fortunately, there is a very easy way to get this modern data-science stack installed: the Anaconda distribution from Continuum Analytics! Their version of Python comes bundled with everything you need, and it is what I myself will be running in the tutorial:
 
-http://continuum.io/downloads
+https://www.anaconda.com/download/
 
 For this evening — or tomorrow, if that is when you have a few minutes — set the goal of installing the components listed above and then being able to start up an IPython Notebook and see its interface appear in your browser. By clicking on "New -> Python" to create a new notebook, typing "3+3" into the box, and pressing Shift+Enter to get the result "6", you can confirm that the IPython Notebook is working and able to talk to Python itself.
 
